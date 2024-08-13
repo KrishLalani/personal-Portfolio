@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Personal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6c5ce7',
+                        secondary: '#00cec9',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+}
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <header class="fixed w-full top-0 z-50 bg-gray-800 shadow-lg">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-primary">KP</a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="hover:text-primary transition duration-300">Home</a>
+                    <a href="#about" class="hover:text-primary transition duration-300">About</a>
+                    <a href="#skills" class="hover:text-primary transition duration-300">Skills</a>
+                    <a href="#projects" class="hover:text-primary transition duration-300">Projects</a>
+                    <a href="#contact" class="hover:text-primary transition duration-300">Contact</a>
+                </div>
+                <button class="md:hidden focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 pt-24">
+        <section id="home" class="min-h-screen flex items-center justify-center">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold mb-4 text-primary animate-pulse">Krish Lalani</h1>
+                <p class="text-2xl mb-8 text-secondary typewriter"></p>
+                <p class="text-lg text-gray-600 mb-8">Crafting seamless digital experiences with code and creativity</p>
+                <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-opacity-80 transition duration-300 transform hover:scale-105">Hire Me</a>
+            </div>
+        </section>
+
+        <section id="about" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center">
+                <img src="./img1.JPG
+                " alt="krish lalani" class="w-64 h-64 rounded-full mb-8 md:mr-12 transform hover:rotate-3 transition duration-300">
+                <div class="max-w-xl">
+                    <p class="text-lg mb-6">I'm a passionate Backend developer with 2 years of experience in creating (API)Application program Interface and Sql Database. I love turning ideas into reality through code and design.</p>
+                    <div class="grid grid-cols-3 gap-6 text-center">
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-lg transform hover:-translate-y-2 transition duration-300">
+                            <h3 class="font-semibold text-primary">Experience</h3>
+                            <p>2+ Years</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-lg transform hover:-translate-y-2 transition duration-300">
+                            <h3 class="font-semibold text-primary">Projects</h3>
+                            <p>5+ Completed</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-lg transform hover:-translate-y-2 transition duration-300">
+                            <h3 class="font-semibold text-primary">Clients</h3>
+                            <p>5+ Happy Clients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary">My Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-800 p-4 rounded-lg text-center transform hover:scale-105 transition duration-300">HTML5</div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center transform hover:scale-105 transition duration-300">JavaScript</div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center transform hover:scale-105 transition duration-300">Node-js</div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center transform hover:scale-105 transition duration-300">MySQL</div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center transform hover:scale-105 transition duration-300">Python</div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center transform hover:scale-105 transition duration-300">FastAPI</div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center transform hover:scale-105 transition duration-300">PostMan</div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center transform hover:scale-105 transition duration-300">Git</div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300">
+                    <img src="./KeyLocker.png" alt="Key Locker" class="w-full">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-primary">Key Locker</h3>
+                        <p class="mb-4">Notes and password manager Application</p>
+                        <a href="#" class="text-secondary hover:underline">View Project</a>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300">
+                    <img src="./PlaceStar.png" alt="PlaceStar" class="w-full">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-primary">PlaceStar</h3>
+                        <p class="mb-4">Depstar Quiz Portal</p>
+                        <a href="https://github.com/marmik/DEPSTAR-Placement" class="text-secondary hover:underline">View Project</a>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300">
+                    <img src="./khetsahayogi.png" alt="Khet Sahayogi" class="w-full">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-primary">Khet Sahayogi</h3>
+                        <p class="mb-4">Connect farmer to labour and renting Farm Equipment</p>
+                        <a href="https://github.com/RajMarkana/khetsahayogi" class="text-secondary hover:underline">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary">Contact Me</h2>
+            <form id="contact-form" class="max-w-lg mx-auto">
+                <div class="mb-6">
+                    <input type="text" placeholder="Name" required class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="mb-6">
+                    <input type="email" placeholder="Email" required class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="mb-6">
+                    <textarea placeholder="Message" required class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-primary h-32 resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white px-6 py-3 rounded-lg hover:bg-opacity-80 transition duration-300 transform hover:scale-105">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-center py-6 mt-20">
+        <p>&copy; 2024 Krish Lalani. All rights reserved.</p>
+    </footer>
+
+    <button id="scrollToTop" class="fixed bottom-8 right-8 bg-primary text-white p-2 rounded-full hidden hover:bg-opacity-80 transition duration-300 transform hover:scale-110" title="Go to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
