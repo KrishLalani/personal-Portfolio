@@ -114,9 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
 const viewMoreBtn = document.getElementById('viewMoreBtn');
 const certificateGrid = document.getElementById('certificateGrid');
 const allCertificates = [
-    { img: 'path/to/certificate1.jpg', title: 'Web Development', description: 'Advanced JavaScript - Udemy' },
-    { img: 'path/to/certificate2.jpg', title: 'Data Analysis', description: 'Python for Data Science - Coursera' },
-    { img: 'path/to/certificate3.jpg', title: 'Machine Learning', description: 'Introduction to ML - Stanford Online' },
+    { img: './daiict_hackout.jpg', title: 'Web Development', description: 'Advanced JavaScript - Udemy' },
+    { img: './aws_meetup_2.jpg', title: 'Data Analysis', description: 'Python for Data Science - Coursera' },
+    { img: './hacker_meetup.jpg', title: 'Machine Learning', description: 'Introduction to ML - Stanford Online' },
     // Add more certificates as needed
 ];
 
@@ -214,4 +214,26 @@ particlesJS('particles-js', {
             if (slideIndex > slides.length) { slideIndex = 1 }
             slides[slideIndex - 1].style.display = "block";
             setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+
+
+        function sendWhatsAppMessage(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+    
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+    
+            // Construct the WhatsApp message
+            const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+    
+            // Your WhatsApp number (replace with your number, e.g., 919876543210 for +91 98765 43210)
+            const whatsappNumber = '919054871719';
+    
+            // WhatsApp URL
+            const whatsappURL = `https://wa.me/$919054871719?text=$hello krish`;
+    
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
         }
