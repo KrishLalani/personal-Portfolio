@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Force-enable the Nitro deploy bundle when building outside the Lovable
+  // sandbox (e.g. on Render) and target a standalone Node server.
+  // Produces a runnable server at dist/server/index.mjs; static assets go to dist/client.
+  // Override the preset at build time with NITRO_PRESET if needed.
+  nitro: {
+    preset: process.env.NITRO_PRESET ?? "node-server",
+  },
 });
