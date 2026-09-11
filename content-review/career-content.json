@@ -1,0 +1,314 @@
+{
+  "profile": {
+    "name": "Krish Lalani",
+    "role": "Software Developer",
+    "tagline": "Software developer focused on Python backends and computer vision.",
+    "email": "Krish7lalani@gmail.com",
+    "phone": "+91 90548 71719",
+    "website": "https://portfolio.krishlalani.dev",
+    "github": "https://github.com/KrishLalani",
+    "linkedin": "https://www.linkedin.com/in/krish-lalani-bb4385252/",
+    "resume": "@/assets/Krish_Lalani_Resume_2026.pdf?url",
+    "resumeDocx": "@/assets/Krish_Lalani_Resume_2026.docx?url",
+    "location": "Gujarat, India",
+    "availability": "Open to collaborate & freelance"
+  },
+  "skills": [
+    {
+      "category": "Languages",
+      "items": [
+        "Python",
+        "JavaScript",
+        "SQL",
+        "HTML5",
+        "CSS3"
+      ]
+    },
+    {
+      "category": "Backend",
+      "items": [
+        "Django",
+        "FastAPI",
+        "Flask",
+        "Node.js",
+        "Express.js",
+        "REST APIs",
+        "JWT"
+      ]
+    },
+    {
+      "category": "Computer Vision & AI",
+      "items": [
+        "YOLO",
+        "OpenCV",
+        "PyTorch"
+      ]
+    },
+    {
+      "category": "Edge & IoT",
+      "items": [
+        "Raspberry Pi",
+        "ESP32",
+        "MQTT"
+      ]
+    },
+    {
+      "category": "Databases",
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Firebase",
+        "Supabase",
+        "SQLite"
+      ]
+    },
+    {
+      "category": "DevOps",
+      "items": [
+        "Git",
+        "Azure DevOps",
+        "Docker",
+        "Linux",
+        "CI/CD",
+        "Postman"
+      ]
+    },
+    {
+      "category": "Monitoring",
+      "items": [
+        "Grafana",
+        "ThingsBoard IoT"
+      ]
+    },
+    {
+      "category": "Web & Data",
+      "items": [
+        "Selenium",
+        "EJS"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "PondGuard",
+      "category": "Smart surveillance · Pond protection",
+      "description": "Built a camera-based bird-detection system using YOLO11. The software captures detection events and triggers sprinklers and a red-beam deterrent around ponds.",
+      "role": "Owned the complete software implementation; a teammate handled the hardware.",
+      "result": "",
+      "stack": [
+        "Python",
+        "Flask",
+        "SQLite",
+        "YOLO11",
+        "Google Colab",
+        "Raspberry Pi",
+        "Pi Camera"
+      ],
+      "image": "@/assets/project-1.jpg",
+      "imageAlt": "Temporary preview image for the PondGuard monitoring system",
+      "accent": "from-[oklch(0.72_0.18_160)] to-[oklch(0.7_0.18_220)]",
+      "demo": "",
+      "repo": ""
+    },
+    {
+      "title": "Placestar",
+      "category": "University placement & exam platform",
+      "description": "Developed the backend for a university placement and examination platform with Wi-Fi–restricted access and single-session controls.",
+      "role": "Led a four-engineer backend team, designing the architecture, MySQL database, REST APIs, JWT authentication, and role-based access controls.",
+      "result": "Supported a live examination with 100+ students.",
+      "image": "@/assets/project-2.jpg",
+      "imageAlt": "Temporary preview image for the Placestar university platform",
+      "stack": [
+        "JavaScript",
+        "Node.js",
+        "Express.js",
+        "MySQL",
+        "REST APIs",
+        "Backend leadership"
+      ],
+      "accent": "from-[oklch(0.75_0.15_230)] to-[oklch(0.68_0.18_245)]",
+      "demo": "",
+      "repo": ""
+    },
+    {
+      "title": "Droplify",
+      "category": "E-commerce analytics & price tracking",
+      "description": "Built a price-tracking application that collects product data from Flipkart, Amazon, Meesho, and Myntra, presents price analytics, and sends email alerts when prices drop.",
+      "role": "Built the application independently, including the Flask backend, SQLite database, scraping with Beautiful Soup and Selenium, analytics, and email alerts.",
+      "result": "Validated across 25+ real product pages.",
+      "image": "@/assets/project-3.jpg",
+      "imageAlt": "Temporary preview image for the Droplify price-tracking platform",
+      "stack": [
+        "Python",
+        "Flask",
+        "SQLite",
+        "Beautiful Soup",
+        "Selenium",
+        "Web scraping",
+        "Data analytics",
+        "Email alerts"
+      ],
+      "accent": "from-[oklch(0.68_0.18_245)] to-[oklch(0.7_0.18_280)]",
+      "demo": "",
+      "repo": ""
+    },
+    {
+      "title": "AMC Connect",
+      "category": "Indus Hackathon · Civic complaints",
+      "description": "Built a civic complaint platform that validates GPS data and screens complaint images using computer vision before submission, with live status tracking for citizens and officials.",
+      "role": "Developed the FastAPI backend, image-screening model, and LLM integration for automatically generated complaint descriptions.",
+      "result": "",
+      "image": "@/assets/project-4.jpg",
+      "imageAlt": "Temporary preview image for the AMC Connect civic platform",
+      "stack": [
+        "Python",
+        "FastAPI",
+        "Supabase",
+        "PyTorch",
+        "YOLO",
+        "LLM integration",
+        "Computer vision",
+        "GPS validation"
+      ],
+      "accent": "from-[oklch(0.68_0.18_245)] to-[oklch(0.7_0.18_280)]",
+      "demo": "",
+      "repo": ""
+    },
+    {
+      "title": "ClubSphere",
+      "category": "Multi-club management",
+      "description": "Built a platform for managing multiple university clubs, including memberships, roles, events, attendance, and approval workflows.",
+      "role": "Led backend architecture, PostgreSQL database design, REST APIs, and JWT authentication using Node.js and Express.",
+      "result": "Piloted with clubs at CHARUSAT University.",
+      "image": "@/assets/project-4.jpg",
+      "imageAlt": "Temporary preview image for the ClubSphere management platform",
+      "stack": [
+        "Node.js",
+        "Express.js",
+        "PostgreSQL",
+        "REST APIs",
+        "JWT authentication",
+        "Backend leadership"
+      ],
+      "accent": "from-[oklch(0.68_0.2_300)] to-[oklch(0.62_0.2_340)]",
+      "demo": "",
+      "repo": ""
+    },
+    {
+      "title": "Worker Location Management",
+      "category": "Geofenced workforce monitoring",
+      "description": "Developed workforce-monitoring software in ThingsBoard, using nRF tag signal data and geofencing rules to monitor zones and inactivity.",
+      "role": "Owned the ThingsBoard configuration, geofencing rules, and dashboard, email, and on-device alert logic.",
+      "result": "Validated monitoring rules using RSSI signal data.",
+      "image": "@/assets/project-4.jpg",
+      "imageAlt": "Temporary preview image for the Worker Location Management system",
+      "stack": [
+        "ThingsBoard",
+        "nRF tracking tags",
+        "Geofencing",
+        "Location monitoring",
+        "Rule engine",
+        "Email alerts",
+        "On-device alerts"
+      ],
+      "accent": "from-[oklch(0.65_0.18_220)] to-[oklch(0.7_0.18_260)]",
+      "demo": "",
+      "repo": ""
+    }
+  ],
+  "experience": [
+    {
+      "year": "Apr 2026 — Present",
+      "title": "Software Developer",
+      "company": "Microble Technologies",
+      "meta": "Hybrid",
+      "mark": "MT",
+      "logo": "@/assets/Microble_light.svg",
+      "description": "Develop machine-vision systems for industrial inspection, including insulator defect detection using YOLO and OpenCV. Prepare training datasets through image collection, annotation, and augmentation. Train, evaluate, and deploy vision models into inspection workflows.",
+      "bullets": [
+        "Develop machine-vision systems for industrial inspection, including insulator defect detection using YOLO and OpenCV.",
+        "Prepare training datasets through image collection, annotation, and augmentation.",
+        "Train, evaluate, and deploy vision models into inspection workflows."
+      ]
+    },
+    {
+      "year": "Sep 2025 — Apr 2026",
+      "title": "Python Developer",
+      "company": "Empire Circuits LLC",
+      "meta": "New Jersey, USA · Remote",
+      "mark": "EC",
+      "logo": "@/assets/Empire_Circuit.png",
+      "description": "Developed PondGuard’s software, integrating bird detection, event capture, and automated deterrent responses. Built an OpenCV image-stitching pipeline for PCB quality inspection. Built real-time monitoring dashboards using ThingsBoard, Grafana, and MQTT.",
+      "bullets": [
+        "Developed PondGuard’s software, integrating bird detection, event capture, and automated deterrent responses.",
+        "Built an OpenCV image-stitching pipeline for PCB quality inspection.",
+        "Built real-time monitoring dashboards using ThingsBoard, Grafana, and MQTT."
+      ]
+    },
+    {
+      "year": "Apr 2025 — Jul 2025",
+      "title": "Python Developer",
+      "company": "Infotact Solution",
+      "meta": "Bengaluru, Karnataka",
+      "mark": "IS",
+      "logo": "@/assets/infotact-optimized.webp",
+      "description": "Developed Droplify, an e-commerce price-tracking application using Flask and SQLite, with Beautiful Soup and Selenium for product-data collection, analytics dashboards, and automated price-drop alerts.",
+      "bullets": [
+        "Developed Droplify, an e-commerce price-tracking application using Flask and SQLite.",
+        "Implemented product-data collection with Beautiful Soup and Selenium, analytics dashboards, and automated price-drop alerts."
+      ]
+    },
+    {
+      "year": "Jun 2024 — Aug 2024",
+      "title": "Backend Developer & Team Lead",
+      "company": "CHARUSAT University",
+      "meta": "In-house Internship · Anand, Gujarat",
+      "mark": "CU",
+      "logo": "@/assets/charusat-optimized.webp",
+      "description": "Led a four-engineer backend team building Placestar, a university placement and examination platform tested with 100+ students. Designed Node.js and Express REST APIs, database schemas, JWT authentication, and role-based access controls. Coordinated sprint planning, code reviews, and backend optimization.",
+      "bullets": [
+        "Led a four-engineer backend team building Placestar, a university placement and examination platform tested with 100+ students.",
+        "Designed Node.js and Express REST APIs, database schemas, JWT authentication, and role-based access controls.",
+        "Coordinated sprint planning, code reviews, and backend optimization."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": "2023 — 2026",
+      "degree": "B.E. in Computer Engineering",
+      "institution": "CHARUSAT University, Anand",
+      "detail": "CGPA: 9.07 / 10.00"
+    },
+    {
+      "year": "2020 — 2023",
+      "degree": "Diploma in Computer Engineering",
+      "institution": "A.V. Parekh Technical Institute, Rajkot",
+      "detail": "CGPA: 9.89 / 10.00 · Top 10 Merit Award"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Top 10 Merit Award",
+      "issuer": "Diploma in Computer Engineering · A.V. Parekh Technical Institute",
+      "year": "Academic recognition"
+    },
+    {
+      "title": "Indus Hackathon",
+      "issuer": "Participation · AMC Connect civic technology project",
+      "year": "2025"
+    }
+  ],
+  "about": [
+    "I’m Krish Lalani, a software developer focused on Python backends and computer vision. I build REST APIs with Python and Node.js, and develop detection and image-processing pipelines with YOLO and OpenCV.",
+    "At Microble Technologies, I work on industrial inspection systems, from dataset preparation to model deployment. Previously, I led a four-engineer backend team on Placestar, building APIs, database schemas, and access controls for a platform tested with 100+ students."
+  ],
+  "coreSkills": [
+    "Python",
+    "Node.js",
+    "REST APIs",
+    "YOLO",
+    "OpenCV"
+  ]
+}

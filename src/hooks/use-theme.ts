@@ -1,49 +1,54 @@
-import { useEffect, useState, useCallback } from "react";
-
+import { useCallback, useEffect, useState } from "react";
 export type Theme = "light" | "dark" | "system";
-
 const STORAGE_KEY = "portfolio-theme";
-
-function applyTheme(theme: Theme) {
-  if (typeof document === "undefined") return;
-  const root = document.documentElement;
-  const resolved =
-    theme === "system"
-      ? window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light"
-      : theme;
-  root.classList.toggle("dark", resolved === "dark");
-  root.style.colorScheme = resolved;
+function savedTheme(): Theme {
+  try {
+    const value = localStorage.getItem(STORAGE_KEY);
+    return value === "dark" || value === "light" ? value : "system";
+  } catch {
+    return "system";
+  }
 }
-
+function applyTheme(theme: Theme) {
+  const dark =
+    theme === "dark" ||
+    (theme === "system" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  document.documentElement.classList.toggle("dark", dark);
+  document.documentElement.style.colorScheme = dark ? "dark" : "light";
+}
 export function useTheme() {
   const [theme, setThemeState] = useState<Theme>("system");
-
   useEffect(() => {
-    const stored = (localStorage.getItem(STORAGE_KEY) as Theme | null) ?? "system";
-    setThemeState(stored);
-    applyTheme(stored);
-
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => {
-      const current = (localStorage.getItem(STORAGE_KEY) as Theme | null) ?? "system";
-      if (current === "system") applyTheme("system");
+    const sync = () => {
+      const current = savedTheme();
+      setThemeState(current);
+      applyTheme(current);
     };
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
+    sync();
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    media.addEventListener("change", sync);
+    window.addEventListener("storage", sync);
+    return () => {
+      media.removeEventListener("change", sync);
+      window.removeEventListener("storage", sync);
+    };
   }, []);
-
   const setTheme = useCallback((next: Theme) => {
-    localStorage.setItem(STORAGE_KEY, next);
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      /* Theme still works when storage is unavailable. */
+    }
     setThemeState(next);
     applyTheme(next);
   }, []);
-
-  const toggle = useCallback(() => {
-    const isDark = document.documentElement.classList.contains("dark");
-    setTheme(isDark ? "light" : "dark");
-  }, [setTheme]);
-
+  const toggle = useCallback(
+    () =>
+      setTheme(
+        document.documentElement.classList.contains("dark") ? "light" : "dark",
+      ),
+    [setTheme],
+  );
   return { theme, setTheme, toggle };
 }

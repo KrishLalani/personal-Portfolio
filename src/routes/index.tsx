@@ -1,26 +1,54 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Portfolio } from "@/components/Portfolio";
+import { profile } from "@/lib/portfolio-data";
+
+const configuredUrl = import.meta.env.VITE_SITE_URL || profile.website;
+const siteUrl =
+  configuredUrl && /^https?:\/\//.test(configuredUrl)
+    ? new URL("/", configuredUrl).href
+    : undefined;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Krish Lalani" },
+      { title: "Krish Lalani | Software Developer · Python & Computer Vision" },
       {
         name: "description",
         content:
-          "Portfolio of Krish Lalani, a full-stack software developer open to full-time roles and freelance projects.",
+          "Krish Lalani is a software developer focused on Python backends, REST APIs, and computer vision. Explore industrial inspection work, projects, and experience.",
       },
-      { property: "og:title", content: "Krish Lalani — Software Developer" },
+      {
+        property: "og:title",
+        content: "Krish Lalani — Python, Backend & Computer Vision",
+      },
       {
         property: "og:description",
         content:
-          "Portfolio of Krish Lalani, a full-stack software developer open to full-time roles and freelance projects.",
+          "Krish Lalani is a software developer focused on Python backends, REST APIs, and computer vision. Explore industrial inspection work, projects, and experience.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:card",
+        content: siteUrl ? "summary_large_image" : "summary",
+      },
+      ...(siteUrl
+        ? [
+            { property: "og:url", content: siteUrl },
+            {
+              property: "og:image",
+              content: new URL("social-card.png", siteUrl).href,
+            },
+            { property: "og:image:width", content: "1200" },
+            { property: "og:image:height", content: "630" },
+            {
+              property: "og:image:alt",
+              content:
+                "Krish Lalani — Backend systems. Computer vision. Practical software.",
+            },
+          ]
+        : []),
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: siteUrl ? [{ rel: "canonical", href: siteUrl }] : [],
     scripts: [
       {
         type: "application/ld+json",
@@ -29,6 +57,14 @@ export const Route = createFileRoute("/")({
           "@type": "Person",
           name: "Krish Lalani",
           jobTitle: "Software Developer",
+          ...(siteUrl ? { url: siteUrl } : {}),
+          knowsAbout: [
+            "Python",
+            "Backend Development",
+            "REST APIs",
+            "Computer Vision",
+            "OpenCV",
+          ],
           email: "mailto:Krish7lalani@gmail.com",
           sameAs: [
             "https://github.com/KrishLalani",

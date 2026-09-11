@@ -1,36 +1,39 @@
-import resumeUrl from "@/assets/Krish_Lalani_Resume.pdf?url";
+import resumeUrl from "@/assets/Krish_Lalani_Resume_2026.pdf?url";
+import resumeDocxUrl from "@/assets/Krish_Lalani_Resume_2026.docx?url";
 import pondGuardImage from "@/assets/project-1.jpg";
 import placestarImage from "@/assets/project-2.jpg";
 import shopifyImage from "@/assets/project-3.jpg";
 import additionalProjectImage from "@/assets/project-4.jpg";
 import microbleLogo from "@/assets/Microble_light.svg";
 import empireLogo from "@/assets/Empire_Circuit.png";
-import infotactLogo from "@/assets/Infotact_solution.png";
-import charusatLogo from "@/assets/CHARUSAT_NEW.6cad095d.png";
+import infotactLogo from "@/assets/infotact-optimized.webp";
+import charusatLogo from "@/assets/charusat-optimized.webp";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Portfolio content for Krish Lalani.
-//
-// NOTE: Project descriptions below are professional DRAFTS written from each
-// project's name (LinkedIn can't be auto-imported). Edit the `description`,
-// `stack`, `demo`, and `repo` fields with your real details — everything here
-// flows into the UI automatically.
-// ─────────────────────────────────────────────────────────────────────────────
+// Existing website facts are the source of truth. Proposed copy is tracked in content-review/.
 
 export const profile = {
   name: "Krish Lalani",
   role: "Software Developer",
-  tagline:
-    "I design and build end-to-end systems — from backend and computer vision to connected products. Open to collaborate and freelance.",
+  tagline: "Software developer focused on Python backends and computer vision.",
   email: "Krish7lalani@gmail.com",
+  phone: "+91 90548 71719",
+  website: "https://portfolio.krishlalani.dev",
   github: "https://github.com/KrishLalani",
   linkedin: "https://www.linkedin.com/in/krish-lalani-bb4385252/",
   resume: resumeUrl,
+  resumeDocx: resumeDocxUrl,
   location: "Gujarat, India",
   availability: "Open to collaborate & freelance",
 };
 
-// Honest, defensible numbers — confirm/adjust to taste.
+export const coreSkills = ["Python", "Node.js", "REST APIs", "YOLO", "OpenCV"];
+
+export const biography = [
+  "I’m Krish Lalani, a software developer focused on Python backends and computer vision. I build REST APIs with Python and Node.js, and develop detection and image-processing pipelines with YOLO and OpenCV.",
+  "At Microble Technologies, I work on industrial inspection systems, from dataset preparation to model deployment. Previously, I led a four-engineer backend team on Placestar, building APIs, database schemas, and access controls for a platform tested with 100+ students.",
+];
+
+// Legacy statistics retained for compatibility; the current site emphasizes project evidence.
 export const stats = [
   { label: "Projects featured", value: 6, suffix: "" },
   { label: "Core technologies", value: 30, suffix: "+" },
@@ -81,16 +84,16 @@ export const skills = [
   },
 ];
 
-// Each project: title, category, description (DRAFT), stack, accent gradient,
+// Each project: title, category, verified description, stack, accent gradient,
 // optional demo + repo links (omit or leave "" to hide the button).
 export const projects = [
   {
     title: "PondGuard",
     category: "Smart surveillance · Pond protection",
     description:
-      "A camera system that uses a YOLO11 model to detect target birds around ponds, then auto-captures the event and triggers sprinklers and a red-beam deterrent.",
-    role: "Owned the full software side (a teammate handled hardware).",
-    result: "~75% detection confidence on real birds.",
+      "Built a camera-based bird-detection system using YOLO11. The software captures detection events and triggers sprinklers and a red-beam deterrent around ponds.",
+    role: "Owned the complete software implementation; a teammate handled the hardware.",
+    result: "",
     stack: [
       "Python",
       "Flask",
@@ -110,9 +113,9 @@ export const projects = [
     title: "Placestar",
     category: "University placement & exam platform",
     description:
-      "A secure placement and examination platform for CHARUSAT University, with Wi-Fi–restricted access and single-session controls to prevent remote cheating.",
-    role: "Led the backend team; built the architecture and APIs from scratch.",
-    result: "Ran reliably for a live test with 100+ students.",
+      "Developed the backend for a university placement and examination platform with Wi-Fi–restricted access and single-session controls.",
+    role: "Led a four-engineer backend team, designing the architecture, MySQL database, REST APIs, JWT authentication, and role-based access controls.",
+    result: "Supported a live examination with 100+ students.",
     image: placestarImage,
     imageAlt: "Temporary preview image for the Placestar university platform",
     stack: [
@@ -131,11 +134,12 @@ export const projects = [
     title: "Droplify",
     category: "E-commerce analytics & price tracking",
     description:
-      "A price-tracking app that scrapes Flipkart, Amazon, Meesho, and Myntra, turns the data into analytics, and emails alerts when prices drop.",
-    role: "Solo-built the full app — backend, scraping, analytics, and alerts.",
+      "Built a price-tracking application that collects product data from Flipkart, Amazon, Meesho, and Myntra, presents price analytics, and sends email alerts when prices drop.",
+    role: "Built the application independently, including the Flask backend, SQLite database, scraping with Beautiful Soup and Selenium, analytics, and email alerts.",
     result: "Validated across 25+ real product pages.",
     image: shopifyImage,
-    imageAlt: "Temporary preview image for the Droplify price-tracking platform",
+    imageAlt:
+      "Temporary preview image for the Droplify price-tracking platform",
     stack: [
       "Python",
       "Flask",
@@ -154,8 +158,8 @@ export const projects = [
     title: "AMC Connect",
     category: "Indus Hackathon · Civic complaints",
     description:
-      "A civic complaint platform that validates GPS and uses computer vision to verify complaint images before submission, with live status tracking for citizens and officials.",
-    role: "Built the backend, screening model, and LLM auto-descriptions.",
+      "Built a civic complaint platform that validates GPS data and screens complaint images using computer vision before submission, with live status tracking for citizens and officials.",
+    role: "Developed the FastAPI backend, image-screening model, and LLM integration for automatically generated complaint descriptions.",
     result: "",
     image: additionalProjectImage,
     imageAlt: "Temporary preview image for the AMC Connect civic platform",
@@ -177,8 +181,8 @@ export const projects = [
     title: "ClubSphere",
     category: "Multi-club management",
     description:
-      "A platform to run multiple clubs from one system — memberships, roles, events, attendance, and approval workflows.",
-    role: "Led backend — architecture, database, APIs, and auth.",
+      "Built a platform for managing multiple university clubs, including memberships, roles, events, attendance, and approval workflows.",
+    role: "Led backend architecture, PostgreSQL database design, REST APIs, and JWT authentication using Node.js and Express.",
     result: "Piloted with clubs at CHARUSAT University.",
     image: additionalProjectImage,
     imageAlt: "Temporary preview image for the ClubSphere management platform",
@@ -198,11 +202,12 @@ export const projects = [
     title: "Worker Location Management",
     category: "Geofenced workforce monitoring",
     description:
-      "A ThingsBoard workforce-tracking system using nRF tags and geofencing to monitor zones and inactivity, with dashboard, email, and on-device alerts.",
-    role: "Owned the ThingsBoard software, geofencing, and alert logic.",
+      "Developed workforce-monitoring software in ThingsBoard, using nRF tag signal data and geofencing rules to monitor zones and inactivity.",
+    role: "Owned the ThingsBoard configuration, geofencing rules, and dashboard, email, and on-device alert logic.",
     result: "Validated monitoring rules using RSSI signal data.",
     image: additionalProjectImage,
-    imageAlt: "Temporary preview image for the Worker Location Management system",
+    imageAlt:
+      "Temporary preview image for the Worker Location Management system",
     stack: [
       "ThingsBoard",
       "nRF tracking tags",
@@ -227,7 +232,12 @@ export const experience = [
     mark: "MT",
     logo: microbleLogo,
     description:
-      "Building machine-vision systems for industrial inspection — including insulator defect inspection with YOLO detection models and classical image-processing pipelines (OpenCV). Owning dataset collection, annotation, and augmentation, plus training, evaluation, and deployment of vision models into production workflows.",
+      "Develop machine-vision systems for industrial inspection, including insulator defect detection using YOLO and OpenCV. Prepare training datasets through image collection, annotation, and augmentation. Train, evaluate, and deploy vision models into inspection workflows.",
+    bullets: [
+      "Develop machine-vision systems for industrial inspection, including insulator defect detection using YOLO and OpenCV.",
+      "Prepare training datasets through image collection, annotation, and augmentation.",
+      "Train, evaluate, and deploy vision models into inspection workflows.",
+    ],
   },
   {
     year: "Sep 2025 — Apr 2026",
@@ -237,7 +247,12 @@ export const experience = [
     mark: "EC",
     logo: empireLogo,
     description:
-      "Built computer-vision and IoT systems including PondGuard, an OpenCV image-stitching QA pipeline for PCB inspection, and real-time ThingsBoard and Grafana dashboards backed by MQTT.",
+      "Developed PondGuard’s software, integrating bird detection, event capture, and automated deterrent responses. Built an OpenCV image-stitching pipeline for PCB quality inspection. Built real-time monitoring dashboards using ThingsBoard, Grafana, and MQTT.",
+    bullets: [
+      "Developed PondGuard’s software, integrating bird detection, event capture, and automated deterrent responses.",
+      "Built an OpenCV image-stitching pipeline for PCB quality inspection.",
+      "Built real-time monitoring dashboards using ThingsBoard, Grafana, and MQTT.",
+    ],
   },
   {
     year: "Apr 2025 — Jul 2025",
@@ -247,7 +262,11 @@ export const experience = [
     mark: "IS",
     logo: infotactLogo,
     description:
-      "Built Droplify, an e-commerce price tracker using FastAPI, async scraping, product-data integrations, analytics dashboards, and an automated price-drop alert engine.",
+      "Developed Droplify, an e-commerce price-tracking application using Flask and SQLite, with Beautiful Soup and Selenium for product-data collection, analytics dashboards, and automated price-drop alerts.",
+    bullets: [
+      "Developed Droplify, an e-commerce price-tracking application using Flask and SQLite.",
+      "Implemented product-data collection with Beautiful Soup and Selenium, analytics dashboards, and automated price-drop alerts.",
+    ],
   },
   {
     year: "Jun 2024 — Aug 2024",
@@ -257,7 +276,12 @@ export const experience = [
     mark: "CU",
     logo: charusatLogo,
     description:
-      "Led a four-engineer team building Placestar. Designed the Node.js and Express REST API, database schema, JWT authentication, role-based access, sprint plans, reviews, and backend optimizations.",
+      "Led a four-engineer backend team building Placestar, a university placement and examination platform tested with 100+ students. Designed Node.js and Express REST APIs, database schemas, JWT authentication, and role-based access controls. Coordinated sprint planning, code reviews, and backend optimization.",
+    bullets: [
+      "Led a four-engineer backend team building Placestar, a university placement and examination platform tested with 100+ students.",
+      "Designed Node.js and Express REST APIs, database schemas, JWT authentication, and role-based access controls.",
+      "Coordinated sprint planning, code reviews, and backend optimization.",
+    ],
   },
 ];
 
@@ -276,21 +300,16 @@ export const education = [
   },
 ];
 
-// Honest highlights — swap in real certificate names/issuers when you have them.
+// Learning and project highlights. These are not presented as issued certifications.
 export const highlights = [
   {
+    title: "Top 10 Merit Award",
+    issuer: "Diploma in Computer Engineering · A.V. Parekh Technical Institute",
+    year: "Academic recognition",
+  },
+  {
     title: "Indus Hackathon",
-    issuer: "AMC Connect · Civic technology project",
-    year: "2025",
-  },
-  {
-    title: "Full-Stack Web Development",
-    issuer: "React · Node · PostgreSQL",
-    year: "2024",
-  },
-  {
-    title: "Generative AI Projects",
-    issuer: "OpenAI · hands-on",
+    issuer: "Participation · AMC Connect civic technology project",
     year: "2025",
   },
 ];
@@ -299,10 +318,10 @@ export const highlights = [
 export const certifications = highlights;
 
 export const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
   { label: "Work", href: "#work" },
   { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];

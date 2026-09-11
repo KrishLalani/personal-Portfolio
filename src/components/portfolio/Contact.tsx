@@ -1,101 +1,100 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   ArrowUpRight,
+  Check,
+  Copy,
   FileDown,
   Github,
   Linkedin,
   Mail,
 } from "lucide-react";
 import { profile } from "@/lib/portfolio-data";
-
-const links = [
-  { label: "GitHub", value: "View repositories", href: profile.github, Icon: Github },
-  {
-    label: "LinkedIn",
-    value: "Connect professionally",
-    href: profile.linkedin,
-    Icon: Linkedin,
-  },
-  {
-    label: "Email",
-    value: profile.email,
-    href: `mailto:${profile.email}`,
-    Icon: Mail,
-  },
-];
-
 export function Contact() {
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
+    "idle",
+  );
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopyState("copied");
+    } catch {
+      setCopyState("error");
+    }
+  };
   return (
     <section
+      tabIndex={-1}
       id="contact"
       aria-labelledby="contact-heading"
-      className="py-24 sm:py-32"
+      className="portfolio-section contact-section"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="rounded-[1.5rem] border border-border bg-foreground p-6 text-background sm:rounded-[2rem] sm:p-10 lg:p-14">
-          <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6 }}
+      <div className="portfolio-container">
+        <div className="contact-panel">
+          <div>
+            <p className="eyebrow">06 / Get in touch</p>
+            <h2 id="contact-heading">
+              Have a problem
+              <br />
+              <span>worth solving?</span>
+            </h2>
+            <p className="contact-description">
+              Let’s talk about software development opportunities, freelance
+              projects, or a technical challenge you’re working on.
+            </p>
+            <a href={`mailto:${profile.email}`} className="contact-email">
+              {profile.email}
+              <ArrowUpRight size={24} />
+            </a>
+            <a
+              href={profile.resumeDocx}
+              download="Krish_Lalani_Resume.docx"
+              className="resume-word-link"
             >
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-background/55">
-                07 — Contact
-              </p>
-              <h2
-                id="contact-heading"
-                className="mt-5 max-w-[12ch] font-display text-[clamp(2.6rem,12vw,6.5rem)] leading-[0.9] tracking-tight"
-              >
-                Let&apos;s build something useful.
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-background/65">
-                I&apos;m open to software development roles and freelance work.
-                The fastest way to reach me is by email.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-background px-5 py-3 text-sm font-semibold text-foreground"
-                >
-                  <Mail className="size-4" />
-                  Email me
-                </a>
-                <a
-                  href={profile.resume}
-                  download="Krish_Lalani_Resume.pdf"
-                  className="inline-flex items-center gap-2 rounded-full border border-background/20 px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-background/10"
-                >
-                  <FileDown className="size-4" />
-                  Résumé
-                </a>
-              </div>
-            </motion.div>
-
-            <div className="divide-y divide-background/15 border-y border-background/15">
-              {links.map(({ label, value, href, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel="noreferrer"
-                  className="group flex items-center gap-4 py-5"
-                >
-                  <span className="inline-flex size-10 items-center justify-center rounded-full border border-background/20">
-                    <Icon className="size-4" />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-xs text-background/50">
-                      {label}
-                    </span>
-                    <span className="mt-0.5 block truncate text-sm">
-                      {value}
-                    </span>
-                  </span>
-                  <ArrowUpRight className="size-4 text-background/45 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-background" />
-                </a>
-              ))}
+              <FileDown size={14} /> Resume in Word format
+            </a>
+            <div className="copy-row">
+              <button type="button" onClick={copyEmail}>
+                {copyState === "copied" ? (
+                  <Check size={14} />
+                ) : (
+                  <Copy size={14} />
+                )}{" "}
+                {copyState === "copied" ? "Email copied" : "Copy email address"}
+              </button>
+              <span role="status">
+                {copyState === "error"
+                  ? "Copy unavailable. Select the email address above or use Email me."
+                  : copyState === "copied"
+                    ? "Copied to clipboard."
+                    : ""}
+              </span>
             </div>
+          </div>
+          <div className="contact-actions">
+            <span className="availability">
+              <span />
+              {profile.availability}
+            </span>
+            <a href={`mailto:${profile.email}`}>
+              <Mail size={18} />
+              <span>Email me</span>
+              <ArrowUpRight size={18} />
+            </a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer">
+              <Linkedin size={18} />
+              <span>Connect on LinkedIn</span>
+              <ArrowUpRight size={18} />
+            </a>
+            <a href={profile.github} target="_blank" rel="noreferrer">
+              <Github size={18} />
+              <span>Explore GitHub</span>
+              <ArrowUpRight size={18} />
+            </a>
+            <a href={profile.resume} download="Krish_Lalani_Resume.pdf">
+              <FileDown size={18} />
+              <span>Download resume</span>
+              <ArrowUpRight size={18} />
+            </a>
           </div>
         </div>
       </div>

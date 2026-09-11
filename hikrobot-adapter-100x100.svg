@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="560" viewBox="0 0 520 560">
+  <rect width="520" height="560" fill="#f7f7f5"/>
+  <text x="260" y="28" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#1a1a1a">Hikrobot MV-CS200 Adapter Plate</text>
+  <text x="260" y="48" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#444">100 � 100 � 6 mm � 6061-T6 Aluminum � Top view</text>
+
+  <!-- Plate scaled: 4 px = 1 mm, origin bottom-left of plate at (60, 470) -->
+  <g transform="translate(60,70)">
+    <!-- plate outline -->
+    <rect x="0" y="0" width="400" height="400" fill="#d8dde3" stroke="#222" stroke-width="2"/>
+
+    <!-- camera footprint ghost 29x30 centered -->
+    <rect x="142" y="140" width="116" height="120" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="200" y="132" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="10" fill="#666">Camera footprint 29�30</text>
+
+    <!-- Corner mounts: each corner 1/4 and 3/8 -->
+    <!-- TL -->
+    <circle cx="40" cy="40" r="6.4" fill="none" stroke="#0b6bcb" stroke-width="2"/>
+    <circle cx="40" cy="80" r="9.6" fill="none" stroke="#c0392b" stroke-width="2"/>
+    <!-- TR -->
+    <circle cx="360" cy="40" r="6.4" fill="none" stroke="#0b6bcb" stroke-width="2"/>
+    <circle cx="360" cy="80" r="9.6" fill="none" stroke="#c0392b" stroke-width="2"/>
+    <!-- BL -->
+    <circle cx="40" cy="360" r="6.4" fill="none" stroke="#0b6bcb" stroke-width="2"/>
+    <circle cx="40" cy="320" r="9.6" fill="none" stroke="#c0392b" stroke-width="2"/>
+    <!-- BR -->
+    <circle cx="360" cy="360" r="6.4" fill="none" stroke="#0b6bcb" stroke-width="2"/>
+    <circle cx="360" cy="320" r="9.6" fill="none" stroke="#c0392b" stroke-width="2"/>
+
+    <!-- Center stand mounts -->
+    <circle cx="200" cy="198" r="6.4" fill="#0b6bcb" fill-opacity="0.15" stroke="#0b6bcb" stroke-width="2.5"/>
+    <circle cx="260" cy="198" r="9.6" fill="#c0392b" fill-opacity="0.12" stroke="#c0392b" stroke-width="2.5"/>
+    <text x="200" y="188" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="9" fill="#0b6bcb" font-weight="700">1/4"-20</text>
+    <text x="260" y="188" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="9" fill="#c0392b" font-weight="700">3/8"-16</text>
+
+    <!-- Camera M3: front pair + rear -->
+    <!-- Front M3 at Y from top of plate coords: camera front at y=140 (top of footprint), front is smaller y in SVG -->
+    <!-- SVG y increases downward. Camera front (lens) toward top of drawing = smaller y -->
+    <!-- Plate center = (200,200). Camera: X 35.5-64.5 -> svg 142-258, Y body 35-65 from bottom -> from top of plate: 100-65=35 to 100-35=65 mm from top = svg y 140 to 260 -->
+    
+    <!-- Front M3: 3mm from front. Front at plate-Y=65mm from bottom = 35mm from top -> svg y=140. Front M3 at 3mm toward back = 38mm from top -> svg 152 -->
+    <circle cx="160" cy="152" r="5" fill="none" stroke="#111" stroke-width="1.8"/>
+    <circle cx="240" cy="152" r="5" fill="none" stroke="#111" stroke-width="1.8"/>
+    <!-- Rear M3: 23.7 from front = 35+23.7=58.7 from top -> svg 234.8 -->
+    <circle cx="200" cy="234.8" r="5" fill="none" stroke="#111" stroke-width="1.8"/>
+
+    <!-- M2: front row 4.5 from front = 39.5 from top -> svg 158; rear 4.5+22=26.5 from front = 61.5 from top -> svg 246 -->
+    <circle cx="176" cy="158" r="3.5" fill="#111"/>
+    <circle cx="224" cy="158" r="3.5" fill="#111"/>
+    <circle cx="176" cy="246" r="3.5" fill="#111"/>
+    <circle cx="224" cy="246" r="3.5" fill="#111"/>
+
+    <!-- Dimension labels for camera cluster -->
+    <line x1="160" y1="125" x2="240" y2="125" stroke="#333" stroke-width="1"/>
+    <text x="200" y="120" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="10" fill="#111">20 mm (M3)</text>
+    <line x1="176" y1="270" x2="224" y2="270" stroke="#333" stroke-width="1"/>
+    <text x="200" y="285" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="10" fill="#111">12 mm (M2)</text>
+    <line x1="270" y1="158" x2="270" y2="246" stroke="#333" stroke-width="1"/>
+    <text x="300" y="205" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="10" fill="#111">22</text>
+    <line x1="130" y1="152" x2="130" y2="234.8" stroke="#555" stroke-width="1" stroke-dasharray="3 2"/>
+    <text x="112" y="195" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="9" fill="#555">23.7</text>
+
+    <text x="200" y="310" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#111">Camera pattern (Hikrobot bottom)</text>
+    <text x="200" y="325" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="10" fill="#333">� M2 � � M3 clearance</text>
+
+    <!-- size labels -->
+    <text x="200" y="-8" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#111">100 mm</text>
+    <text x="-18" y="200" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#111" transform="rotate(-90 -18 200)">100 mm</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(60,490)">
+    <circle cx="8" cy="8" r="6" fill="none" stroke="#0b6bcb" stroke-width="2"/>
+    <text x="22" y="12" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#111">1/4"-20 UNC tapped (stand)</text>
+    <circle cx="220" cy="8" r="8" fill="none" stroke="#c0392b" stroke-width="2"/>
+    <text x="236" y="12" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#111">3/8"-16 UNC tapped (stand)</text>
+    <circle cx="8" cy="32" r="3.5" fill="#111"/>
+    <text x="22" y="36" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#111">M2 �2.4 thru + counterbore (camera)</text>
+    <circle cx="220" cy="32" r="5" fill="none" stroke="#111" stroke-width="1.5"/>
+    <text x="236" y="36" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#111">M3 �3.4 thru + counterbore (camera)</text>
+  </g>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396">
+<defs>
+  <linearGradient id="background" x2="1" y2="1"><stop stop-color="#101e2c"/><stop offset="1" stop-color="#122f35"/></linearGradient>
+  <radialGradient id="halo"><stop stop-color="#5ba6a0" stop-opacity=".19"/><stop offset="1" stop-color="#5ba6a0" stop-opacity="0"/></radialGradient>
+  <linearGradient id="wire"><stop stop-color="#71b6b0" stop-opacity=".2"/><stop offset="1" stop-color="#b6e4c4"/></linearGradient>
+  <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" stroke="#abccca" stroke-opacity=".055" fill="none"/></pattern>
+</defs>
+<rect width="1584" height="396" fill="url(#background)"/>
+<rect width="1584" height="396" fill="url(#grid)"/>
+<ellipse cx="1320" cy="190" rx="370" ry="360" fill="url(#halo)"/>
+<!-- Quiet geometry on the left remains clear of LinkedIn's profile-photo overlay. -->
+<g fill="none" stroke="#6d9da4" stroke-opacity=".18"><circle cx="155" cy="180" r="112"/><circle cx="155" cy="180" r="166" stroke-dasharray="2 9"/><path d="M0 180H267M155 14V294"/></g>
+<g fill="#9eceb4"><circle cx="235" cy="101" r="4"/><circle cx="71" cy="255" r="2"/></g>
+<path d="M318 48V348" stroke="#51797b" stroke-opacity=".4"/>
+<!-- Main message -->
+<text x="366" y="78" font-family="Arial,sans-serif" font-size="17" letter-spacing="3.5" fill="#e5eee9">KRISH LALANI</text>
+<text x="366" y="105" font-family="Arial,sans-serif" font-size="10" letter-spacing="2.4" fill="#92b5ba">SOFTWARE DEVELOPER</text>
+<text x="361" y="176" font-family="Arial,sans-serif" font-size="51" font-weight="700" letter-spacing="-1.7" fill="#f0f4ee">Backend systems.</text>
+<text x="362" y="243" font-family="Georgia,serif" font-size="64" font-style="italic" letter-spacing="-1.4" fill="#b8e0ba">Computer vision.</text>
+<text x="366" y="289" font-family="Arial,sans-serif" font-size="25" letter-spacing="-.5" fill="#d6e5de">Practical software.</text>
+<path d="M366 313H956" stroke="#4c7378" stroke-opacity=".75"/>
+<text x="366" y="343" font-family="Arial,sans-serif" font-size="14" letter-spacing="1" fill="#a6c2c6">PYTHON · NODE.JS · YOLO · OPENCV</text>
+<!-- Two engineering disciplines converge into a working product. -->
+<text x="1073" y="46" font-family="Arial,sans-serif" font-size="9" letter-spacing="2.3" fill="#92b5ba">FROM INPUT TO IMPACT</text>
+<g fill="#162f3d" stroke="#46626e" stroke-width="1">
+  <rect x="1064" y="64" width="303" height="108" rx="10"/>
+  <rect x="1064" y="217" width="303" height="112" rx="10"/>
+</g>
+<path d="M1064 100H1367M1064 253H1367" stroke="#365460"/>
+<g font-family="Arial,sans-serif" font-size="10" letter-spacing="1.5">
+  <text x="1082" y="87" fill="#b5dbdf">{ }  BACKEND</text>
+  <text x="1082" y="240" fill="#b8e0ba">[ ]  COMPUTER VISION</text>
+</g>
+<g font-family="Menlo,monospace" font-size="10">
+  <text x="1084" y="124" fill="#8baebc">request</text><text x="1141" y="124" fill="#d9e9e6"> → API → data</text>
+  <text x="1084" y="148" fill="#92adbc">architecture</text><text x="1167" y="148" fill="#7895a6"> / auth / logic</text>
+</g>
+<!-- Conceptual inspection grid, deliberately without fake accuracy figures. -->
+<g fill="none" stroke="#567683" stroke-width="1">
+ <path d="M1084 271H1138V312H1084ZM1097 271V312M1111 271V312M1125 271V312M1084 284H1138M1084 298H1138"/>
+</g>
+<path d="M1095 278H1128V305H1095Z" fill="#a9dbc0" fill-opacity=".07" stroke="#b8e0ba"/>
+<g font-family="Menlo,monospace" font-size="10">
+ <text x="1155" y="284" fill="#b8e0ba">frame → model</text>
+ <text x="1155" y="305" fill="#94b6bf">detect / evaluate</text>
+</g>
+<path d="M1367 118H1391Q1407 118 1407 134V182Q1407 197 1423 197H1440M1367 273H1391Q1407 273 1407 257V212Q1407 197 1423 197" stroke="url(#wire)" fill="none" stroke-width="1.6"/>
+<circle cx="1380" cy="118" r="3" fill="#8fc7c7"/><circle cx="1380" cy="273" r="3" fill="#b8e0ba"/>
+<rect x="1440" y="165" width="64" height="64" rx="15" fill="#234249" stroke="#8db7ac"/>
+<path d="M1459 197L1469 207L1485 188" fill="none" stroke="#cce7c2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1472" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" letter-spacing="1.4" fill="#a7c7c6">PRODUCT</text>
+<text x="1067" y="358" font-family="Arial,sans-serif" font-size="10" letter-spacing=".8" fill="#92b5ba">portfolio.krishlalani.dev</text>
+<path d="M1500 349H1511V338M1495 354L1511 338" stroke="#b8e0ba" fill="none"/>
+</svg>

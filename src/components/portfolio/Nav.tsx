@@ -1,128 +1,118 @@
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { navLinks, profile } from "@/lib/portfolio-data";
 import { ThemeToggle } from "./ThemeToggle";
-import { cn } from "@/lib/utils";
-import avatar from "@/assets/avatar.jpg";
-
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("");
-
+  const [active, setActive] = useState("");
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const ids = navLinks.map((l) => l.href.slice(1));
-    const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
-    if (!els.length) return;
-    const obs = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive("#" + e.target.id);
-        });
+        for (const entry of entries)
+          if (entry.isIntersecting)
+            setActive(entry.target.id === "top" ? "" : `#${entry.target.id}`);
       },
-      { rootMargin: "-40% 0px -55% 0px" },
+      { rootMargin: "-15% 0px -65% 0px" },
     );
-    els.forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
+    const top = document.getElementById("top");
+    if (top) observer.observe(top);
+    navLinks.forEach((link) => {
+      const element = document.getElementById(link.href.slice(1));
+      if (element) observer.observe(element);
+    });
+    return () => observer.disconnect();
   }, []);
-
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    const onPointer = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const media = window.matchMedia("(min-width: 1024px)");
+    const onResize = () => {
+      if (media.matches) setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onPointer);
+    media.addEventListener("change", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onPointer);
+      media.removeEventListener("change", onResize);
+    };
+  }, [open]);
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "py-2" : "py-4",
-      )}
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div
-          className={cn(
-            "flex items-center justify-between rounded-2xl border border-transparent px-3 py-2.5 transition-all duration-300 sm:px-4",
-            scrolled && "border-border bg-card/95 shadow-elegant backdrop-blur-xl",
-          )}
+    <header className="site-header" ref={headerRef}>
+      <div className="portfolio-container nav-inner">
+        <a
+          href="#top"
+          className="wordmark"
+          aria-label={`${profile.name}, back to top`}
         >
-          <a href="#top" className="flex items-center gap-2.5 text-sm font-semibold tracking-tight">
-            <img
-              src={avatar}
-              alt={profile.name}
-              width={64}
-              height={64}
-              className="size-9 rounded-full border border-primary/30 object-cover object-[center_20%] shadow-elegant"
-            />
-            <span className="hidden uppercase tracking-wide sm:inline">
-              {profile.name}
-            </span>
+          <span className="monogram">
+            kl<span>.</span>
+          </span>
+          <span>KRISH LALANI</span>
+        </a>
+        <nav className="desktop-nav" aria-label="Primary">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              key={link.href}
+              aria-current={active === link.href ? "location" : undefined}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <div className="flex items-center gap-3">
+          <a href="#contact" className="nav-contact">
+            Let’s talk <ArrowUpRight size={14} />
           </a>
-
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-            {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className={cn(
-                  "relative px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground lg:px-3",
-                  active === l.href && "font-medium text-foreground",
-                )}
-              >
-                {active === l.href && (
-                  <motion.span
-                    layoutId="nav-indicator"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-x-2 bottom-0 h-px bg-primary"
-                  />
-                )}
-                {l.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-label="Toggle menu"
-              className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/60 text-foreground lg:hidden"
-            >
-              {open ? <X className="size-4" /> : <Menu className="size-4" />}
-            </button>
-          </div>
+          <ThemeToggle />
+          <button
+            ref={toggleRef}
+            type="button"
+            className="menu-toggle"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
-
-        <AnimatePresence>
-          {open && (
-            <motion.nav
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-              className="mt-2 rounded-2xl border border-border bg-card/95 p-2 shadow-elegant backdrop-blur-xl lg:hidden"
-              aria-label="Mobile"
-            >
-              {navLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-xl px-4 py-3 text-sm text-foreground hover:bg-accent"
-                >
-                  {l.label}
-                </a>
-              ))}
-            </motion.nav>
-          )}
-        </AnimatePresence>
       </div>
-    </motion.header>
+      <nav
+        id="mobile-navigation"
+        aria-label="Mobile"
+        className="mobile-nav"
+        hidden={!open}
+      >
+        {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            onClick={() => {
+              setOpen(false);
+              document
+                .getElementById(link.href.slice(1))
+                ?.focus({ preventScroll: true });
+            }}
+            aria-current={active === link.href ? "location" : undefined}
+          >
+            {link.label}
+            <ArrowUpRight size={16} />
+          </a>
+        ))}
+      </nav>
+    </header>
   );
 }

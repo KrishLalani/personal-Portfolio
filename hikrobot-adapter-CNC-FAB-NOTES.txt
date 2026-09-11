@@ -1,0 +1,111 @@
+================================================================================
+CNC FABRICATION NOTES — Hikrobot MV-CS200 Camera Adapter Plate
+================================================================================
+File:     hikrobot-adapter-100x100.dxf
+Date:     2026-07-12
+Units:    MILLIMETERS
+Origin:   Bottom-left corner of plate (X right, Y up)
+================================================================================
+
+1. STOCK
+--------
+Material : Aluminum 6061-T6 (or equivalent)
+Size     : 100.0 x 100.0 x 6.0 mm
+Qty      : 1
+Finish   : Deburr all edges / break sharp corners 0.3–0.5 mm
+Optional : Clear anodize
+
+2. DXF LAYERS (how to use)
+--------------------------
+OUTLINE         Cut outer profile 100 x 100
+DRILL_M2_CLR    Drill through Ø2.4  (M2 clearance)
+CB_M2           Counterbore Ø4.0 x 3.0 deep FROM BOTTOM face
+DRILL_M3_CLR    Drill through Ø3.4  (M3 clearance)
+CB_M3           Counterbore Ø5.5 x 3.5 deep FROM BOTTOM face
+TAPDRILL_1_4    Drill Ø5.10 (#7) through, then TAP 1/4"-20 UNC through
+TAP_1_4_20      Location / major reference only (do not cut as final hole)
+TAPDRILL_3_8    Drill Ø7.94 (5/16") through, then TAP 3/8"-16 UNC through
+TAP_3_8_16      Location / major reference only (do not cut as final hole)
+REF_CAMERA      Construction only — DO NOT MACHINE (camera footprint ghost)
+
+IMPORTANT:
+- Machine counterbores on the BOTTOM face (stand side).
+- Camera sits on the TOP face.
+- Camera mounting screws go UP through plate into camera.
+- Camera thread depth is only 3.0 mm — do not use long screws.
+
+3. HOLE SCHEDULE (coordinates = hole centers)
+---------------------------------------------
+
+CAMERA PATTERN = Hikrobot datasheet bottom view
+   Camera body: X=35..65 (front/lens at X=35), Y=35.5..64.5 (center Y=50)
+
+A) CAMERA — M2 clearance + counterbore (4 holes)
+   Front column X=39.5 (4.5mm from front); Rear column X=61.5 (+22mm)
+   Vertical spacing 12 mm (Y=44 and Y=56)
+   Drill: Ø2.4 thru
+   CB:    Ø4.0 x 3.0 deep from BOTTOM
+
+   X=39.5  Y=56.0     (front M2)
+   X=39.5  Y=44.0     (front M2)
+   X=61.5  Y=56.0     (rear M2)
+   X=61.5  Y=44.0     (rear M2)
+
+B) CAMERA — M3 clearance + counterbore (3 holes)
+   Front column X=38.0 (3mm from front), 20mm vertical (Y=40 and Y=60)
+   Rear M3 on SAME LINE as rear M2s at X=61.5, Y=50
+   Drill: Ø3.4 thru
+   CB:    Ø5.5 x 3.5 deep from BOTTOM
+
+   X=38.0  Y=60.0     (front M3)
+   X=38.0  Y=40.0     (front M3)
+   X=61.5  Y=50.0     (rear M3 — same line as rear M2 pair)
+
+C) STAND — 1/4"-20 UNC TAP THROUGH (5 holes)
+   Tap drill Ø5.10 (#7), tap 1/4"-20 UNC through
+
+   X=50.0  Y=49.5     (CENTER — primary Digitek mount)
+   X=10.0  Y=10.0     (corner BL)
+   X=90.0  Y=10.0     (corner BR)
+   X=10.0  Y=90.0     (corner TL)
+   X=90.0  Y=90.0     (corner TR)
+
+D) STAND — 3/8"-16 UNC TAP THROUGH (5 holes)
+   Tap drill Ø7.94 (5/16"), tap 3/8"-16 UNC through
+
+   X=65.0  Y=49.5     (CENTER — beside 1/4)
+   X=10.0  Y=20.0     (corner BL)
+   X=90.0  Y=20.0     (corner BR)
+   X=10.0  Y=80.0     (corner TL)
+   X=90.0  Y=80.0     (corner TR)
+
+4. ORIENTATION
+--------------
+- Camera lens / front of camera points toward +Y (top of plate).
+- Camera body footprint approx X=35.5–64.5, Y=35.0–65.0 (REF_CAMERA layer).
+- Digitek C-stand 1/4" or 3/8" stud screws into center tapped holes from BOTTOM.
+
+5. HARDWARE (customer supply — for reference)
+---------------------------------------------
+Camera M2 : M2 x 5 socket head (4 pcs) — engagement into camera ≤ 2.5 mm
+Camera M3 : M3 x 5 or M3 x 6 socket head (2–3 pcs) — engagement ≤ 2.5 mm
+Stand     : Digitek 1/4"-20 or 3/8"-16 stud into tapped holes
+
+6. TOLERANCE
+------------
+Linear hole positions : ±0.10 mm
+Hole diameters        : ±0.05 mm (drilled)
+Plate outer size      : ±0.20 mm
+Thickness             : 6.0 ±0.10 mm
+
+7. INSPECTION
+-------------
+- Verify M2 pattern: 12.0 x 22.0 mm centers
+- Verify front M3: 20.0 mm centers
+- Verify rear M3 at X=50.0, Y=38.5 (colinear with rear M2s)
+- Check 1/4"-20 and 3/8"-16 threads accept gauge / mating stud
+- Confirm counterbores are on the OPPOSITE face from camera seat
+
+================================================================================
+END OF FAB NOTES
+================================================================================

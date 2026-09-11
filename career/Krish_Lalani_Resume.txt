@@ -1,0 +1,53 @@
+Krish Lalani
+SOFTWARE DEVELOPER | PYTHON, BACKEND & COMPUTER VISION
+Gujarat, India | Krish7lalani@gmail.com | +91 90548 71719
+portfolio.krishlalani.dev | github.com/KrishLalani
+www.linkedin.com/in/krish-lalani-bb4385252
+PROFESSIONAL SUMMARY
+Software developer focused on Python backends and computer vision, with experience in industrial inspection, REST
+API architecture, and backend team leadership.
+TECHNICAL SKILLS
+Languages &
+backend:
+Python, JavaScript, SQL, Flask, FastAPI, Django, Node.js, Express, REST APIs, JWT
+Vision & data:
+YOLO, OpenCV, PyTorch, PostgreSQL, MySQL, SQLite, MongoDB, Supabase
+Tools:
+Git, Docker, Linux, Azure DevOps, CI/CD, Postman, Beautiful Soup, Selenium
+PROFESSIONAL EXPERIENCE
+Software Developer | Microble Technologies
+ Apr 2026–Present
+• Develop industrial inspection pipelines for insulator defect detection with YOLO and OpenCV; own dataset
+preparation, annotation, augmentation, model training, evaluation, and deployment.
+Python Developer | Empire Circuits LLC
+ Sep 2025–Apr 2026
+• Built PondGuard’s detection and response software, an OpenCV PCB image-stitching pipeline, and
+ThingsBoard/Grafana monitoring dashboards backed by MQTT.
+Python Developer | Infotact Solution
+ Apr 2025–Jul 2025
+• Built Droplify with Flask, SQLite, Beautiful Soup, and Selenium, including product-data collection, analytics, and
+automated price-drop alerts.
+Backend Developer & Team Lead | CHARUSAT University
+ Jun 2024–Aug 2024
+• Led a four-engineer backend team on Placestar: Node.js/Express APIs, MySQL schemas, JWT access controls,
+sprints, and reviews. Supported a live examination with 100+ students.
+PROJECTS
+PondGuard | Python · Flask · YOLO11
+Owned bird-detection software with event capture and automated sprinkler and red-beam deterrents.
+Placestar | Node.js · Express · MySQL
+Built placement/exam APIs with Wi-Fi restrictions and single-session controls; supported 100+ students.
+Droplify | Flask · SQLite · Selenium
+Solo-built four-platform price tracking, analytics, and email alerts; validated 25+ product pages.
+AMC Connect | FastAPI · PyTorch · YOLO
+Built civic-complaint APIs, GPS validation, image screening, and LLM-generated descriptions.
+ClubSphere | Node.js · PostgreSQL · JWT
+Led club-management APIs, database design, and authentication; piloted at CHARUSAT University.
+Worker Location Management | ThingsBoard · Geofencing
+Configured zone/inactivity rules and alerts; validated monitoring behavior using RSSI signal data.
+EDUCATION
+B.E. in Computer Engineering
+ 2023–2026
+CHARUSAT University, Anand | CGPA: 9.07/10
+Diploma in Computer Engineering
+ 2020–2023
+A.V. Parekh Technical Institute, Rajkot | CGPA: 9.89/10 · Top 10 Merit Award

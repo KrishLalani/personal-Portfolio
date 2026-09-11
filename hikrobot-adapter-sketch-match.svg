@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="900" viewBox="0 0 800 900">
+  <rect width="800" height="900" fill="#ffffff"/>
+  <text x="400" y="40" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700">Hikrobot MV-CS200 Adapter Plate</text>
+  <text x="400" y="68" text-anchor="middle" font-family="Arial" font-size="14" fill="#333">100 × 100 × 6 mm · Layout per your sketch</text>
+
+  <!-- plate, scale 6px/mm, top-left of plate at (100,100), Y flipped: svg_y = 100 + (100-y)*6 -->
+  <g transform="translate(100,100)">
+    <rect x="0" y="0" width="600" height="600" fill="#f2f2f2" stroke="#111" stroke-width="3"/>
+    <text x="300" y="-12" text-anchor="middle" font-family="Arial" font-size="16">100 mm</text>
+    <text x="-20" y="300" text-anchor="middle" font-family="Arial" font-size="16" transform="rotate(-90 -20 300)">100 mm</text>
+
+    <!-- helper function inline: X*6, (100-Y)*6 -->
+    <!-- Corners 1/4 blue, 3/8 red -->
+    <circle cx="60" cy="540" r="15" fill="none" stroke="#0066cc" stroke-width="3"/>
+    <circle cx="60" cy="480" r="24" fill="none" stroke="#cc0000" stroke-width="3"/>
+    <circle cx="540" cy="540" r="15" fill="none" stroke="#0066cc" stroke-width="3"/>
+    <circle cx="540" cy="480" r="24" fill="none" stroke="#cc0000" stroke-width="3"/>
+    <circle cx="60" cy="60" r="15" fill="none" stroke="#0066cc" stroke-width="3"/>
+    <circle cx="60" cy="120" r="24" fill="none" stroke="#cc0000" stroke-width="3"/>
+    <circle cx="540" cy="60" r="15" fill="none" stroke="#0066cc" stroke-width="3"/>
+    <circle cx="540" cy="120" r="24" fill="none" stroke="#cc0000" stroke-width="3"/>
+
+    <!-- Stand 1/4 @ (43,78) -> svg (258, 132); 3/8 @ (57,78) -> (342, 132) -->
+    <circle cx="258" cy="132" r="15" fill="none" stroke="#0066cc" stroke-width="4"/>
+    <text x="258" y="105" text-anchor="middle" font-family="Arial" font-size="14" fill="#0066cc" font-weight="700">1/4</text>
+    <circle cx="342" cy="132" r="24" fill="none" stroke="#cc0000" stroke-width="4"/>
+    <text x="342" y="100" text-anchor="middle" font-family="Arial" font-size="14" fill="#cc0000" font-weight="700">3/8</text>
+
+    <!-- Rear line Y=61.7: M2(44), M3(50), M2(56) -> svg y=(100-61.7)*6=229.8 -->
+    <circle cx="264" cy="230" r="7" fill="#111"/>
+    <circle cx="300" cy="230" r="10" fill="none" stroke="#111" stroke-width="3"/>
+    <circle cx="336" cy="230" r="7" fill="#111"/>
+    <text x="400" y="235" font-family="Arial" font-size="13" fill="#111">M2  M3  M2  (same line)</text>
+
+    <!-- Front M3 Y=38: (40,60) -> svg y=372; Front M2 Y=39.7 -> svg y=361.8 -->
+    <circle cx="240" cy="372" r="10" fill="none" stroke="#111" stroke-width="3"/>
+    <circle cx="360" cy="372" r="10" fill="none" stroke="#111" stroke-width="3"/>
+    <circle cx="264" cy="362" r="7" fill="#111"/>
+    <circle cx="336" cy="362" r="7" fill="#111"/>
+
+    <!-- dims -->
+    <line x1="240" y1="400" x2="360" y2="400" stroke="#111" stroke-width="1.5"/>
+    <text x="300" y="420" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700">20 mm (M3)</text>
+    <line x1="264" y1="440" x2="336" y2="440" stroke="#111" stroke-width="1.5"/>
+    <text x="300" y="460" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700">12 mm (M2)</text>
+
+    <line x1="390" y1="230" x2="390" y2="362" stroke="#111" stroke-width="1.5"/>
+    <text x="455" y="300" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700">22 mm</text>
+    <line x1="480" y1="230" x2="480" y2="372" stroke="#555" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="545" y="310" text-anchor="middle" font-family="Arial" font-size="14" fill="#333" font-weight="700">23.7 mm</text>
+  </g>
+
+  <text x="400" y="740" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700">Legend</text>
+  <circle cx="250" cy="770" r="10" fill="none" stroke="#111" stroke-width="3"/>
+  <text x="270" y="775" font-family="Arial" font-size="14">M3 screw</text>
+  <circle cx="400" cy="770" r="7" fill="#111"/>
+  <text x="420" y="775" font-family="Arial" font-size="14">M2 screw</text>
+  <circle cx="250" cy="810" r="12" fill="none" stroke="#0066cc" stroke-width="3"/>
+  <text x="270" y="815" font-family="Arial" font-size="14" fill="#0066cc">1/4"-20 TAP</text>
+  <circle cx="430" cy="810" r="16" fill="none" stroke="#cc0000" stroke-width="3"/>
+  <text x="455" y="815" font-family="Arial" font-size="14" fill="#cc0000">3/8"-16 TAP</text>
+  <text x="400" y="860" text-anchor="middle" font-family="Arial" font-size="13" fill="#555">Matches your hand sketch · Front/lens at bottom of camera pattern</text>
+</svg>

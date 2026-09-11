@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="780" viewBox="0 0 700 780">
+  <rect width="700" height="780" fill="#fff"/>
+  <text x="350" y="32" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700">CNC DRAWING  Hikrobot MV-CS200 Adapter</text>
+  <text x="350" y="54" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#333">100 � 100 � 6 mm � 6061-T6 Al � Units: mm � Origin: bottom-left � TOP VIEW</text>
+
+  <!-- plate 5px/mm at offset -->
+  <g transform="translate(100,80) scale(5)">
+    <rect x="0" y="0" width="100" height="100" fill="#eee" stroke="#000" stroke-width="0.4"/>
+    <!-- flip Y for top-view with Y-up semantics: draw with y' = 100-y -->
+    
+    <!-- helper: we'll manually convert Y: svg_y = 100 - y -->
+    
+    <!-- corners 1/4 -->
+    <circle cx="10" cy="90" r="2.55" fill="none" stroke="#0066cc" stroke-width="0.35"/>
+    <circle cx="90" cy="90" r="2.55" fill="none" stroke="#0066cc" stroke-width="0.35"/>
+    <circle cx="10" cy="10" r="2.55" fill="none" stroke="#0066cc" stroke-width="0.35"/>
+    <circle cx="90" cy="10" r="2.55" fill="none" stroke="#0066cc" stroke-width="0.35"/>
+    <circle cx="50" cy="50.5" r="2.55" fill="none" stroke="#0066cc" stroke-width="0.45"/>
+
+    <!-- corners 3/8  svg_y = 100-y -->
+    <circle cx="10" cy="80" r="3.97" fill="none" stroke="#cc0000" stroke-width="0.35"/>
+    <circle cx="90" cy="80" r="3.97" fill="none" stroke="#cc0000" stroke-width="0.35"/>
+    <circle cx="10" cy="20" r="3.97" fill="none" stroke="#cc0000" stroke-width="0.35"/>
+    <circle cx="90" cy="20" r="3.97" fill="none" stroke="#cc0000" stroke-width="0.35"/>
+    <circle cx="65" cy="50.5" r="3.97" fill="none" stroke="#cc0000" stroke-width="0.45"/>
+
+    <!-- M2: y 60.5 -> 39.5, 38.5 -> 61.5 -->
+    <circle cx="44" cy="39.5" r="1.2" fill="#111"/>
+    <circle cx="56" cy="39.5" r="1.2" fill="#111"/>
+    <circle cx="44" cy="61.5" r="1.2" fill="#111"/>
+    <circle cx="56" cy="61.5" r="1.2" fill="#111"/>
+    <circle cx="44" cy="39.5" r="2.0" fill="none" stroke="#666" stroke-width="0.2"/>
+    <circle cx="56" cy="39.5" r="2.0" fill="none" stroke="#666" stroke-width="0.2"/>
+    <circle cx="44" cy="61.5" r="2.0" fill="none" stroke="#666" stroke-width="0.2"/>
+    <circle cx="56" cy="61.5" r="2.0" fill="none" stroke="#666" stroke-width="0.2"/>
+
+    <!-- M3: 62 -> 38, 41.3 -> 58.7 -->
+    <circle cx="40" cy="38" r="1.7" fill="none" stroke="#000" stroke-width="0.35"/>
+    <circle cx="60" cy="38" r="1.7" fill="none" stroke="#000" stroke-width="0.35"/>
+    <circle cx="50" cy="58.7" r="1.7" fill="none" stroke="#000" stroke-width="0.35"/>
+
+    <rect x="35.5" y="35" width="29" height="30" fill="none" stroke="#999" stroke-width="0.25" stroke-dasharray="1.5 1"/>
+  </g>
+
+  <text x="350" y="610" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#0066cc" font-weight="700">Blue = 1/4"-20 TAP (drill �5.10)</text>
+  <text x="350" y="628" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#cc0000" font-weight="700">Red = 3/8"-16 TAP (drill �7.94)</text>
+  <text x="350" y="646" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#111">Black filled = M2 �2.4 thru + CB �4.0�3.0 bottom</text>
+  <text x="350" y="664" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#111">Black ring = M3 �3.4 thru + CB �5.5�3.5 bottom</text>
+  <text x="350" y="690" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700">Give vendor: hikrobot-adapter-100x100-CNC.dxf + this notes file</text>
+  <text x="350" y="710" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#444">hikrobot-adapter-CNC-FAB-NOTES.txt</text>
+  <text x="350" y="740" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#666">Camera front / lens toward TOP of drawing (+Y)</text>
+</svg>
