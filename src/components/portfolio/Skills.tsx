@@ -25,7 +25,11 @@ const icons: Record<string, LucideIcon> = {
 };
 export function Skills() {
   const groups = skills.filter((group) => group.category !== "Edge & IoT");
-  const carousel = useMobileCarousel(groups.length);
+  const rows = Array.from(
+    { length: Math.ceil(groups.length / 2) },
+    (_, index) => groups.slice(index * 2, index * 2 + 2),
+  );
+  const carousel = useMobileCarousel(rows.length);
   return (
     <section
       tabIndex={-1}
@@ -50,8 +54,8 @@ export function Skills() {
         </div>
         <MobileCarouselControls
           carousel={carousel}
-          count={groups.length}
-          itemLabel="skill group"
+          count={rows.length}
+          itemLabel="skill row"
           viewportId="skill-slides"
         />
         <div
@@ -60,23 +64,28 @@ export function Skills() {
           ref={carousel.viewportRef}
           {...carousel.interactionProps}
         >
-          {groups.map((group, i) => {
-            const Icon = icons[group.category] ?? Code2;
-            return (
-              <article className="skill-group" key={group.category}>
-                <div className="skill-group-top">
-                  <Icon size={21} strokeWidth={1.5} />
-                  <span>0{i + 1}</span>
-                </div>
-                <h3>{group.category}</h3>
-                <ul className="skill-tags">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            );
-          })}
+          {rows.map((row, rowIndex) => (
+            <div className="skill-row" key={row[0].category}>
+              {row.map((group, columnIndex) => {
+                const i = rowIndex * 2 + columnIndex;
+                const Icon = icons[group.category] ?? Code2;
+                return (
+                  <article className="skill-group" key={group.category}>
+                    <div className="skill-group-top">
+                      <Icon size={21} strokeWidth={1.5} />
+                      <span>0{i + 1}</span>
+                    </div>
+                    <h3>{group.category}</h3>
+                    <ul className="skill-tags">
+                      {group.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                );
+              })}
+            </div>
+          ))}
         </div>
       </div>
     </section>
