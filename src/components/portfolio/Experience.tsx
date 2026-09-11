@@ -1,6 +1,9 @@
 import { experience } from "@/lib/portfolio-data";
 import { SectionHeading } from "./SectionHeading";
+import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
+import { MobileCarouselControls } from "./MobileCarouselControls";
 export function Experience() {
+  const carousel = useMobileCarousel<HTMLOListElement>(experience.length);
   return (
     <section
       tabIndex={-1}
@@ -15,7 +18,18 @@ export function Experience() {
           title="Engineering, in practice."
           description="Software development across industry and university teams."
         />
-        <ol className="experience-list">
+        <MobileCarouselControls
+          carousel={carousel}
+          count={experience.length}
+          itemLabel="experience"
+          viewportId="experience-slides"
+        />
+        <ol
+          className="experience-list mobile-carousel-track"
+          id="experience-slides"
+          ref={carousel.viewportRef}
+          {...carousel.interactionProps}
+        >
           {experience.map((item, i) => (
             <li key={item.company} className="experience-row">
               <div className="experience-date">

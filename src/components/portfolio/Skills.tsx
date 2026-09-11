@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { coreSkills, skills } from "@/lib/portfolio-data";
 import { SectionHeading } from "./SectionHeading";
+import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
+import { MobileCarouselControls } from "./MobileCarouselControls";
 const icons: Record<string, LucideIcon> = {
   Languages: Code2,
   Backend: Server,
@@ -22,6 +24,8 @@ const icons: Record<string, LucideIcon> = {
   "Web & Data": Globe2,
 };
 export function Skills() {
+  const groups = skills.filter((group) => group.category !== "Edge & IoT");
+  const carousel = useMobileCarousel(groups.length);
   return (
     <section
       tabIndex={-1}
@@ -44,26 +48,35 @@ export function Skills() {
             ))}
           </ul>
         </div>
-        <div className="skills-grid">
-          {skills
-            .filter((group) => group.category !== "Edge & IoT")
-            .map((group, i) => {
-              const Icon = icons[group.category] ?? Code2;
-              return (
-                <article className="skill-group" key={group.category}>
-                  <div className="skill-group-top">
-                    <Icon size={21} strokeWidth={1.5} />
-                    <span>0{i + 1}</span>
-                  </div>
-                  <h3>{group.category}</h3>
-                  <ul className="skill-tags">
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </article>
-              );
-            })}
+        <MobileCarouselControls
+          carousel={carousel}
+          count={groups.length}
+          itemLabel="skill group"
+          viewportId="skill-slides"
+        />
+        <div
+          className="skills-grid mobile-carousel-track"
+          id="skill-slides"
+          ref={carousel.viewportRef}
+          {...carousel.interactionProps}
+        >
+          {groups.map((group, i) => {
+            const Icon = icons[group.category] ?? Code2;
+            return (
+              <article className="skill-group" key={group.category}>
+                <div className="skill-group-top">
+                  <Icon size={21} strokeWidth={1.5} />
+                  <span>0{i + 1}</span>
+                </div>
+                <h3>{group.category}</h3>
+                <ul className="skill-tags">
+                  {group.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

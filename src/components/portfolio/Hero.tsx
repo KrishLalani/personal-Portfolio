@@ -38,7 +38,7 @@ export function Hero() {
     <section id="top" aria-labelledby="hero-heading" className="hero-section">
       <div className="portfolio-container">
         <div className="hero-topline">
-          <span className="eyebrow">{profile.name} / Software Developer</span>
+          <span className="eyebrow">Software Developer</span>
           <span className="availability">
             <span />
             {profile.availability}

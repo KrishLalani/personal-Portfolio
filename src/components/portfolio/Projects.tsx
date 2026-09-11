@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
+import { MobileCarouselControls } from "./MobileCarouselControls";
 import {
   ArrowUpRight,
   ChevronDown,
@@ -65,6 +67,30 @@ export function Projects() {
     .filter(
       (project) => filter === "All work" || project.groups.includes(filter),
     );
+  const carousel = useMobileCarousel(visible.length, filter);
+  const { setActive, setPaused, viewportRef, goTo } = carousel;
+
+  useEffect(() => {
+    let frame = 0;
+    const showLinkedProject = () => {
+      if (!window.location.hash.startsWith("#project-")) return;
+      setFilter("All work");
+      setPaused(true);
+      frame = requestAnimationFrame(() => {
+        const cards = Array.from(viewportRef.current?.children ?? []);
+        const index = cards.findIndex(
+          (card) => `#${card.id}` === window.location.hash,
+        );
+        if (index >= 0) goTo(index, false);
+      });
+    };
+    showLinkedProject();
+    window.addEventListener("hashchange", showLinkedProject);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", showLinkedProject);
+    };
+  }, [goTo, setPaused, viewportRef]);
   return (
     <section
       tabIndex={-1}
@@ -89,7 +115,11 @@ export function Projects() {
             <button
               type="button"
               key={category}
-              onClick={() => setFilter(category)}
+              onClick={() => {
+                setFilter(category);
+                setActive(0);
+                setPaused(true);
+              }}
               aria-pressed={filter === category}
             >
               {category}
@@ -99,7 +129,19 @@ export function Projects() {
             {visible.length} {visible.length === 1 ? "project" : "projects"}
           </span>
         </div>
-        <div className="project-grid">
+        <MobileCarouselControls
+          carousel={carousel}
+          count={visible.length}
+          itemLabel="project"
+          viewportId="project-slides"
+        />
+        <div
+          key={filter}
+          className="project-grid mobile-carousel-track"
+          id="project-slides"
+          ref={viewportRef}
+          {...carousel.interactionProps}
+        >
           {visible.map((project) => (
             <article
               className={`project-card project-${project.theme}`}
