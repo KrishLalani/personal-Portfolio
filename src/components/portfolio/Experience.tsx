@@ -2,8 +2,11 @@ import { experience } from "@/lib/portfolio-data";
 import { SectionHeading } from "./SectionHeading";
 import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
 import { MobileCarouselControls } from "./MobileCarouselControls";
+import { Reveal } from "./Reveal";
+import { useSpotlight } from "@/hooks/use-spotlight";
 export function Experience() {
   const carousel = useMobileCarousel<HTMLOListElement>(experience.length);
+  const spotlight = useSpotlight();
   return (
     <section
       tabIndex={-1}
@@ -31,7 +34,13 @@ export function Experience() {
           {...carousel.interactionProps}
         >
           {experience.map((item, i) => (
-            <li key={item.company} className="experience-row">
+            <Reveal
+              as="li"
+              key={item.company}
+              delay={Math.min(i, 3) * 0.08}
+              className="experience-row"
+              onPointerMove={spotlight}
+            >
               <div className="experience-date">
                 <span className="eyebrow">{item.year}</span>
                 {i === 0 && (
@@ -68,7 +77,7 @@ export function Experience() {
                   <p className="experience-description">{item.description}</p>
                 )}
               </div>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </div>

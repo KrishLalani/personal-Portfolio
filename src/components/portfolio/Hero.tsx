@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -6,7 +7,12 @@ import {
   ScanLine,
   Server,
 } from "lucide-react";
-import { experience, profile } from "@/lib/portfolio-data";
+import { experience, profile, stats } from "@/lib/portfolio-data";
+import { DetectionCanvas } from "./DetectionCanvas";
+import { RequestFlow } from "./RequestFlow";
+import { SplitText } from "./SplitText";
+import { Counter } from "./Counter";
+import { Magnetic } from "./Magnetic";
 
 const systems = [
   {
@@ -34,61 +40,91 @@ const systems = [
 export function Hero() {
   const [active, setActive] = useState(0);
   const system = systems[active];
+  const reduce = useReducedMotion();
+
+  const fade = (delay: number) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 18 },
+          animate: { opacity: 1, y: 0 },
+          transition: {
+            duration: 0.75,
+            delay,
+            ease: [0.16, 1, 0.3, 1] as const,
+          },
+        };
+
   return (
     <section id="top" aria-labelledby="hero-heading" className="hero-section">
       <div className="portfolio-container">
-        <div className="hero-topline">
+        <motion.div className="hero-topline" {...fade(0.05)}>
           <span className="eyebrow">Software Developer</span>
           <span className="availability">
             <span />
             {profile.availability}
           </span>
-        </div>
+        </motion.div>
+
         <div className="hero-layout">
           <div className="hero-copy">
-            <p className="eyebrow text-primary">
+            <motion.p className="eyebrow text-primary" {...fade(0.12)}>
               Python · Backend · Computer vision
-            </p>
+            </motion.p>
+
             <h1 id="hero-heading">
-              Backend systems.
+              <SplitText text="Backend systems." delay={0.1} />
               <br />
-              <span className="hero-italic">Computer vision.</span>
+              <SplitText
+                text="Computer vision."
+                delay={0.22}
+                className="hero-italic"
+              />
               <br />
-              Practical software.
+              <SplitText text="Practical software." delay={0.34} />
             </h1>
-            <p className="hero-description">
+
+            <motion.p className="hero-description" {...fade(0.5)}>
               I build REST APIs, detection models, and image-processing
               pipelines. From backend architecture to industrial inspection, I
               turn technical requirements into working software.
-            </p>
-            <div className="flex flex-wrap gap-3 mt-8">
-              <a href="#work" className="button-primary">
-                Explore my work <ArrowUpRight size={17} />
-              </a>
-              <a
-                href={profile.resume}
-                download="Krish_Lalani_Resume.pdf"
-                className="button-secondary"
-              >
-                <FileDown size={16} /> Download resume
-              </a>
-            </div>
-            <p className="hero-current">
+            </motion.p>
+
+            <motion.div className="flex flex-wrap gap-3 mt-8" {...fade(0.6)}>
+              <Magnetic>
+                <a href="#work" className="button-primary">
+                  Explore my work <ArrowUpRight size={17} />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href={profile.resume}
+                  download="Krish_Lalani_Resume.pdf"
+                  className="button-secondary"
+                >
+                  <FileDown size={16} /> Download resume
+                </a>
+              </Magnetic>
+            </motion.div>
+
+            <motion.p className="hero-current" {...fade(0.7)}>
               <span className="status-dot" />
               Currently {experience[0].title} at{" "}
               <a href="#experience">
                 {experience[0].company} <ArrowUpRight size={13} />
               </a>
-            </p>
+            </motion.p>
           </div>
-          <div className="system-card">
+
+          <motion.div className="system-card" {...fade(0.3)}>
             <div className="system-card-top">
               <span className="flex items-center gap-2">
                 <span className="status-dot" />
                 ENGINEERING / EXPLORER
               </span>
-              <span>01—02</span>
+              <span>0{active + 1}—02</span>
             </div>
+
             <div
               className="system-tabs"
               aria-label="Explore engineering disciplines"
@@ -105,27 +141,21 @@ export function Hero() {
                 </button>
               ))}
             </div>
+
             <div
               className="system-content"
               aria-live="polite"
               aria-atomic="true"
             >
-              <div className="system-visual" aria-hidden="true">
-                <div className="system-orbit orbit-one" />
-                <div className="system-orbit orbit-two" />
-                <div className="system-core">
-                  <system.Icon size={40} strokeWidth={1} />
-                  <span>{active === 0 ? "VISION" : "BACKEND"}</span>
-                </div>
-                <span className="system-coordinate coordinate-one">
-                  INPUT → PROCESS
-                </span>
-                <span className="system-coordinate coordinate-two">
-                  BUILD / EVALUATE / DEPLOY
-                </span>
-                <span className="system-cross cross-one">+</span>
-                <span className="system-cross cross-two">+</span>
-              </div>
+              <motion.div
+                key={active}
+                initial={reduce ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {active === 0 ? <DetectionCanvas /> : <RequestFlow />}
+              </motion.div>
+
               <div className="system-flow">
                 {system.nodes.map((node, i) => (
                   <div key={node}>
@@ -134,17 +164,31 @@ export function Hero() {
                   </div>
                 ))}
               </div>
+
               <div className="system-detail">
                 <h2>{system.title}</h2>
                 <p>{system.description}</p>
                 <span>{system.tools}</span>
               </div>
             </div>
+
             <a className="system-link" href={system.href}>
               Explore related work <ArrowUpRight size={16} />
             </a>
-          </div>
+          </motion.div>
         </div>
+
+        <div className="stat-band">
+          {stats.map((stat) => (
+            <article key={stat.label}>
+              <strong>
+                <Counter value={stat.value} suffix={stat.suffix} />
+              </strong>
+              <p>{stat.label}</p>
+            </article>
+          ))}
+        </div>
+
         <div className="hero-bottom">
           <a href="#work">
             <ArrowDown size={16} /> A closer look at the work

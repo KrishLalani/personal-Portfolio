@@ -1,41 +1,66 @@
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
 import { navLinks, profile } from "@/lib/portfolio-data";
+import { Magnetic } from "./Magnetic";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="text-sm font-semibold text-foreground">{profile.name}</p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {profile.role} · © {year}
-          </p>
+    <footer className="site-footer">
+      <div className="portfolio-container">
+        <div className="footer-top">
+          <div className="footer-mark">
+            <span className="monogram">
+              kl<span>.</span>
+            </span>
+            <p>
+              Backend systems. <em>Computer vision.</em> Practical software.
+            </p>
+          </div>
+
+          <nav className="footer-nav" aria-label="Footer">
+            <span className="eyebrow">Sections</span>
+            <ul>
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="footer-reach">
+            <span className="eyebrow">Elsewhere</span>
+            <ul>
+              <li>
+                <a href={`mailto:${profile.email}`}>
+                  <Mail size={15} /> {profile.email}
+                </a>
+              </li>
+              <li>
+                <a href={profile.github} target="_blank" rel="noreferrer">
+                  <Github size={15} /> GitHub
+                </a>
+              </li>
+              <li>
+                <a href={profile.linkedin} target="_blank" rel="noreferrer">
+                  <Linkedin size={15} /> LinkedIn
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <nav
-          className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground"
-          aria-label="Footer"
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="transition-colors hover:text-foreground"
-            >
-              {link.label}
+        <div className="footer-bottom">
+          <p>
+            © {year} {profile.name} · {profile.role} · {profile.location}
+          </p>
+          <Magnetic strength={0.2}>
+            <a href="#top" className="footer-top-link" aria-label="Back to top">
+              <ArrowUp size={16} />
             </a>
-          ))}
-        </nav>
-
-        <a
-          href="#top"
-          className="inline-flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
-          aria-label="Back to top"
-        >
-          <ArrowUp className="size-4" />
-        </a>
+          </Magnetic>
+        </div>
       </div>
     </footer>
   );

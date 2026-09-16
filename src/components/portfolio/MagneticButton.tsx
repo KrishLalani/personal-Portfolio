@@ -1,5 +1,10 @@
 import { useRef, type ReactNode, type MouseEvent } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "ghost";
@@ -69,12 +74,16 @@ export function MagneticButton({
           download={download}
         >
           <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shine" />
-          <span className="relative z-10 flex items-center gap-2">{children}</span>
+          <span className="relative z-10 flex items-center gap-2">
+            {children}
+          </span>
         </a>
       ) : (
         <button type="button" aria-label={ariaLabel} className={styles}>
           <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shine" />
-          <span className="relative z-10 flex items-center gap-2">{children}</span>
+          <span className="relative z-10 flex items-center gap-2">
+            {children}
+          </span>
         </button>
       )}
     </motion.div>

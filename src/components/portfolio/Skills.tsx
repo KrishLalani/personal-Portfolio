@@ -13,6 +13,8 @@ import { coreSkills, skills } from "@/lib/portfolio-data";
 import { SectionHeading } from "./SectionHeading";
 import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
 import { MobileCarouselControls } from "./MobileCarouselControls";
+import { Reveal } from "./Reveal";
+import { useSpotlight } from "@/hooks/use-spotlight";
 const icons: Record<string, LucideIcon> = {
   Languages: Code2,
   Backend: Server,
@@ -30,6 +32,7 @@ export function Skills() {
     (_, index) => groups.slice(index * 2, index * 2 + 2),
   );
   const carousel = useMobileCarousel(rows.length);
+  const spotlight = useSpotlight();
   return (
     <section
       tabIndex={-1}
@@ -70,7 +73,13 @@ export function Skills() {
                 const i = rowIndex * 2 + columnIndex;
                 const Icon = icons[group.category] ?? Code2;
                 return (
-                  <article className="skill-group" key={group.category}>
+                  <Reveal
+                    as="article"
+                    delay={Math.min(i, 5) * 0.06}
+                    className="skill-group spotlight"
+                    key={group.category}
+                    onPointerMove={spotlight}
+                  >
                     <div className="skill-group-top">
                       <Icon size={21} strokeWidth={1.5} />
                       <span>0{i + 1}</span>
@@ -81,7 +90,7 @@ export function Skills() {
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
-                  </article>
+                  </Reveal>
                 );
               })}
             </div>

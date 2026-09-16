@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
 
 export function CustomCursor() {
   const [enabled, setEnabled] = useState(false);
@@ -12,8 +17,9 @@ export function CustomCursor() {
 
   useEffect(() => {
     if (reduce) return;
-    const isFine =
-      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const isFine = window.matchMedia(
+      "(hover: hover) and (pointer: fine)",
+    ).matches;
     if (!isFine) return;
     setEnabled(true);
     document.body.classList.add("has-custom-cursor");

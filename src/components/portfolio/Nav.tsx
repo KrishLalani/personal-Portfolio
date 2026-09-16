@@ -2,11 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { navLinks, profile } from "@/lib/portfolio-data";
 import { ThemeToggle } from "./ThemeToggle";
+import { CommandPalette } from "./CommandPalette";
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -49,7 +57,7 @@ export function Nav() {
     };
   }, [open]);
   return (
-    <header className="site-header" ref={headerRef}>
+    <header className="site-header" data-scrolled={scrolled} ref={headerRef}>
       <div className="portfolio-container nav-inner">
         <a
           href="#top"
@@ -73,6 +81,7 @@ export function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
+          <CommandPalette />
           <a href="#contact" className="nav-contact">
             Let’s talk <ArrowUpRight size={14} />
           </a>

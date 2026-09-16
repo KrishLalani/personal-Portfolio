@@ -7,6 +7,7 @@ Single main reading column, a three-row skills table, native paragraphs/bullets/
 and no text boxes, images, or contact details in headers/footers. PDF embeds Arial.
 """
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -32,10 +33,22 @@ OUT = ROOT / 'career'
 OUT.mkdir(exist_ok=True)
 data = json.loads((ROOT / 'content-review/career-content.json').read_text())
 profile = data['profile']
-INK, ACCENT, MUTED, RULE = '172B40', '24647B', '596878', 'C9D5DE'
-TINT = 'EDF3F7'
-CONTENT_WIDTH = 612 - 2 * 44.64
-MARGIN_X, MARGIN_Y = 44.64, 39.6
+
+# Two builds from one source of truth.
+#   design : the recruiter-facing version, with rules, tints and a skills table.
+#   ats    : maximum machine readability - one column, no tables, no shading,
+#            no borders, no colour, no page furniture. Same words, same order.
+ATS = '--ats' in sys.argv
+SUFFIX = '_ATS' if ATS else ''
+
+if ATS:
+    INK = ACCENT = MUTED = '000000'
+    RULE = TINT = 'FFFFFF'
+else:
+    INK, ACCENT, MUTED, RULE = '172B40', '24647B', '596878', 'C9D5DE'
+    TINT = 'EDF3F7'
+CONTENT_WIDTH = 612 - 2 * 43
+MARGIN_X, MARGIN_Y = 43, 28
 FONT_DIR = Path('/System/Library/Fonts/Supplemental')
 for name, file in [('ResumeArial', 'Arial.ttf'), ('ResumeArialBold', 'Arial Bold.ttf')]:
     path = FONT_DIR / file
@@ -44,12 +57,28 @@ for name, file in [('ResumeArial', 'Arial.ttf'), ('ResumeArialBold', 'Arial Bold
     pdfmetrics.registerFont(TTFont(name, str(path)))
 pdfmetrics.registerFontFamily('ResumeArial', normal='ResumeArial', bold='ResumeArialBold')
 
-# Compact descriptions summarize only reviewed facts. The website retains the detail.
-experience_summaries = {
-    'Microble Technologies': 'Develop industrial inspection pipelines for insulator defect detection with YOLO and OpenCV; own dataset preparation, annotation, augmentation, model training, evaluation, and deployment.',
-    'Empire Circuits LLC': 'Built PondGuard’s detection and response software, an OpenCV PCB image-stitching pipeline, and ThingsBoard/Grafana monitoring dashboards backed by MQTT.',
-    'Infotact Solution': 'Built Droplify with Flask, SQLite, Beautiful Soup, and Selenium, including product-data collection, analytics, and automated price-drop alerts.',
-    'CHARUSAT University': 'Led a four-engineer backend team on Placestar: Node.js/Express APIs, MySQL schemas, JWT access controls, sprints, and reviews. Supported a live examination with 100+ students.',
+# Every bullet below restates a fact already reviewed for the website.
+# Two to three bullets per role so scope and ownership are both legible.
+experience_bullets = {
+    'Microble Technologies': [
+        'Develop machine-vision systems for industrial inspection, including insulator defect detection.',
+        'Own training data end to end: image collection, annotation, and augmentation for YOLO models.',
+        'Train, evaluate, and deploy vision models into production inspection workflows using OpenCV.',
+    ],
+    'Empire Circuits LLC': [
+        'Built PondGuard\u2019s bird-detection software with event capture and automated deterrent responses.',
+        'Built an OpenCV image-stitching pipeline for PCB quality inspection.',
+        'Built real-time monitoring dashboards with ThingsBoard, Grafana, and MQTT.',
+    ],
+    'Infotact Solution': [
+        'Developed Droplify, an e-commerce price-tracking application, on Flask and SQLite.',
+        'Added Beautiful Soup and Selenium data collection, analytics dashboards, and price-drop alerts.',
+    ],
+    'CHARUSAT University': [
+        'Led a four-engineer backend team on Placestar, supporting a live examination with 100+ students.',
+        'Designed Node.js/Express REST APIs, MySQL schemas, JWT auth, and role-based access controls.',
+        'Coordinated sprint planning, code reviews, and backend optimization.',
+    ],
 }
 project_summaries = {
     'PondGuard': ('Python · Flask · YOLO11', 'Owned bird-detection software with event capture and automated sprinkler and red-beam deterrents.'),
@@ -77,16 +106,21 @@ add('Contact', f"{escape(profile['location'])}  |  {link(profile['email'], 'mail
 add('Contact', link(profile['website'].removeprefix('https://'), profile['website']) + '  |  ' + link(profile['github'].removeprefix('https://'), profile['github']))
 add('Contact', link(profile['linkedin'].removeprefix('https://').rstrip('/'), profile['linkedin']))
 add('Heading 1', 'PROFESSIONAL SUMMARY')
-add('Normal', 'Software developer focused on Python backends and computer vision, with experience in industrial inspection, REST API architecture, and backend team leadership.')
+add('Normal', 'Software developer specializing in Python backends and computer vision. Builds and deploys YOLO and OpenCV detection pipelines for industrial inspection, and designs REST APIs, database schemas, and access controls for platforms with real users. Led a four-engineer backend team on a platform that supported a live examination with 100+ students.')
 add('Heading 1', 'TECHNICAL SKILLS')
+add('Skill Row', '<b>Core competencies:</b> Backend Development, REST API Design, Computer Vision, Object Detection, Model Deployment, Database Design, Technical Leadership')
 add('Skill Row', '<b>Languages &amp; backend:</b> Python, JavaScript, SQL, Flask, FastAPI, Django, Node.js, Express, REST APIs, JWT')
 add('Skill Row', '<b>Vision &amp; data:</b> YOLO, OpenCV, PyTorch, PostgreSQL, MySQL, SQLite, MongoDB, Supabase')
 add('Skill Row', '<b>Tools:</b> Git, Docker, Linux, Azure DevOps, CI/CD, Postman, Beautiful Soup, Selenium')
 add('Heading 1', 'PROFESSIONAL EXPERIENCE')
 for item in data['experience']:
     dates = item['year'].replace(' — ', '–')
-    add('Heading 2', f"<b>{escape(item['title'])}</b> | {escape(item['company'])}  <date>{escape(dates)}</date>")
-    add('List Bullet', escape(experience_summaries[item['company']]))
+    if ATS:
+        add('Heading 2', f"<b>{escape(item['title'])}</b> | {escape(item['company'])} | {escape(dates)}")
+    else:
+        add('Heading 2', f"<b>{escape(item['title'])}</b> | {escape(item['company'])}  <date>{escape(dates)}</date>")
+    for bullet in experience_bullets[item['company']]:
+        add('List Bullet', escape(bullet))
 add('Heading 1', 'PROJECTS')
 project_urls = []
 for item in data['projects']:
@@ -98,23 +132,29 @@ for item in data['projects']:
     add('Project Body', escape(description))
 add('Heading 1', 'EDUCATION')
 for item in data['education']:
-    add('Heading 2', f"<b>{escape(item['degree'])}</b>  <date>{escape(item['year'].replace(' — ', '–'))}</date>")
+    years = escape(item['year'].replace(' — ', '–'))
+    if ATS:
+        add('Heading 2', f"<b>{escape(item['degree'])}</b> | {years}")
+    else:
+        add('Heading 2', f"<b>{escape(item['degree'])}</b>  <date>{years}</date>")
     add('Education Body', escape(item['institution'] + ' | ' + item['detail'].replace(' / 10.00', '/10')))
+add('Heading 1', 'AWARDS &amp; RECOGNITION')
+add('Education Body', 'Top 10 Merit Award, Diploma in Computer Engineering (A.V. Parekh Institute)  |  Indus Hackathon 2025 participant')
 
 # Font size, leading, before, after, color. Explicit tokens for every text style.
 spec = {
-    'Title': (28, 31, 0, 4, INK),
-    'Subtitle': (9.5, 12, 0, 6, ACCENT),
-    'Contact': (9, 11, 0, 1, MUTED),
-    'Normal': (10, 11.6, 0, 2, INK),
-    'Skill Row': (9.5, 11.4, 0, 0, INK),
-    'Heading 1': (9.5, 12, 9, 5, INK),
-    'Heading 2': (10, 12, 4, 2, INK),
-    'Heading 3': (10, 12, 4, 2, INK),
-    'List Bullet': (10, 11.6, 0, 2, INK),
-    'Project Heading': (9.8, 11.7, 0, 1, INK),
-    'Project Body': (9.5, 11.2, 0, 0, INK),
-    'Education Body': (9.5, 11.4, 0, 1, MUTED),
+    'Title': (24, 27, 0, 2, INK),
+    'Subtitle': (9, 11, 0, 4.5, ACCENT),
+    'Contact': (8.5, 10.2, 0, 0.5, MUTED),
+    'Normal': (9.2, 10.9, 0, 1.5, INK),
+    'Skill Row': (8.9, 10.6, 0, 0, INK),
+    'Heading 1': (9, 11, 4.5, 2.5, INK),
+    'Heading 2': (9.6, 11.2, 3.5, 1.5, INK),
+    'Heading 3': (9.6, 11.2, 3.5, 1.5, INK),
+    'List Bullet': (9.2, 10.9, 0, 1.1, INK),
+    'Project Heading': (9.1, 10.8, 0, 0.5, INK),
+    'Project Body': (8.9, 10.4, 0, 0, INK),
+    'Education Body': (8.9, 10.6, 0, 0.8, MUTED),
 }
 heading_roles = {'Title', 'Subtitle', 'Heading 1', 'Heading 2', 'Heading 3', 'Project Heading'}
 
@@ -143,7 +183,7 @@ for role, (size, leading, before, after, color) in spec.items():
         ppr.remove(border)
     if role in {'Heading 2'}:
         fmt.tab_stops.add_tab_stop(Pt(CONTENT_WIDTH), WD_TAB_ALIGNMENT.RIGHT)
-    if role == 'Heading 1':
+    if role == 'Heading 1' and not ATS:
         shading = OxmlElement('w:shd'); shading.set(qn('w:fill'), TINT); ppr.append(shading)
         borders = OxmlElement('w:pBdr')
         line = OxmlElement('w:bottom')
@@ -203,6 +243,11 @@ def add_docx_markup(paragraph, markup, role):
 skill_table = None
 project_index = -1
 for role, markup in blocks:
+    if role == 'Skill Row' and ATS:
+        # One paragraph per line: "Label: value1, value2" parses cleanly everywhere.
+        paragraph = doc.add_paragraph(style='Skill Row')
+        add_docx_markup(paragraph, markup, 'Skill Row')
+        continue
     if role == 'Skill Row':
         if skill_table is None:
             skill_table = doc.add_table(rows=0, cols=2)
@@ -235,7 +280,7 @@ for role, markup in blocks:
         continue
     paragraph = doc.add_paragraph(style=role)
     add_docx_markup(paragraph, markup, role)
-    if role in {'Project Heading', 'Project Body'}:
+    if role in {'Project Heading', 'Project Body'} and not ATS:
         if role == 'Project Heading': project_index += 1
         props = paragraph._p.get_or_add_pPr()
         borders = OxmlElement('w:pBdr')
@@ -258,7 +303,7 @@ doc.core_properties.title = 'Krish Lalani | Software Developer'
 doc.core_properties.author = 'Krish Lalani'
 doc.core_properties.subject = 'Python, backend engineering and computer vision'
 doc.core_properties.created = doc.core_properties.modified = datetime.now(timezone.utc)
-doc.save(OUT / 'Krish_Lalani_Resume.docx')
+doc.save(OUT / f'Krish_Lalani_Resume{SUFFIX}.docx')
 
 class SectionHeading(Paragraph):
     """Native text with a quiet section rule, preserving the text reading order."""
@@ -306,21 +351,25 @@ class ProjectRow(Flowable):
         self.width = width
         self.heading.wrap(width-14, height)
         self.description.wrap(width-14, height)
-        self.height = self.heading.height+self.description.height+9
+        self.height = self.heading.height+self.description.height+4
         return self.width, self.height
     def draw(self):
         self.canv.setFillColor(colors.HexColor('#F4F7FA' if self.index%2==0 else '#FFFFFF'))
         self.canv.setStrokeColor(colors.HexColor('#'+RULE))
         self.canv.setLineWidth(.4)
         self.canv.rect(0, 0, self.width, self.height, fill=1, stroke=1)
-        self.heading.drawOn(self.canv, 7, self.height-4-self.heading.height)
-        self.description.drawOn(self.canv, 7, 4)
+        self.heading.drawOn(self.canv, 7, self.height-2.5-self.heading.height)
+        self.description.drawOn(self.canv, 7, 2.5)
 
 story = []
 index = 0
 project_index = 0
 while index < len(blocks):
     role, markup = blocks[index]
+    if role == 'Skill Row' and ATS:
+        story.append(Paragraph(markup, pdf_styles['Skill Row']))
+        index += 1
+        continue
     if role == 'Skill Row':
         rows = []
         while index < len(blocks) and blocks[index][0] == 'Skill Row':
@@ -337,6 +386,11 @@ while index < len(blocks):
         ]))
         story.append(table)
         continue
+    if role == 'Project Heading' and ATS:
+        story.append(Paragraph(markup, pdf_styles['Project Heading']))
+        story.append(Paragraph(blocks[index + 1][1], pdf_styles['Project Body']))
+        index += 2
+        continue
     if role == 'Project Heading':
         markup = markup.replace('<a ', f'<font color="#{ACCENT}"><u><a ').replace('</a>', '</a></u></font>')
         story.append(ProjectRow(markup, blocks[index+1][1], project_index))
@@ -346,26 +400,32 @@ while index < len(blocks):
     if '<date>' in markup:
         story.append(DatedHeading(markup, pdf_styles[role]))
     else:
-        cls = SectionHeading if role == 'Heading 1' else Paragraph
+        cls = SectionHeading if role == 'Heading 1' and not ATS else Paragraph
         story.append(cls(markup, pdf_styles[role], bulletText='•' if role == 'List Bullet' else None))
     index += 1
 
 def page_decoration(canvas, document):
+    if ATS:
+        return
     canvas.setStrokeColor(colors.HexColor('#D8E1E8'))
     canvas.setLineWidth(.6)
-    canvas.rect(22, 22, 568, 748, fill=0, stroke=1)
+    canvas.rect(18, 17, 576, 758, fill=0, stroke=1)
     canvas.setFillColor(colors.HexColor('#'+ACCENT))
-    canvas.rect(22, 735, 3, 35, fill=1, stroke=0)
+    canvas.rect(18, 740, 3, 35, fill=1, stroke=0)
 
-pdf = BaseDocTemplate(str(OUT / 'Krish_Lalani_Resume.pdf'), pagesize=(612,792), title='Krish Lalani | Software Developer', author='Krish Lalani')
+pdf = BaseDocTemplate(str(OUT / f'Krish_Lalani_Resume{SUFFIX}.pdf'), pagesize=(612,792), title='Krish Lalani | Software Developer', author='Krish Lalani')
 pdf.addPageTemplates(PageTemplate(id='Resume', frames=[Frame(MARGIN_X, MARGIN_Y, CONTENT_WIDTH, 792-2*MARGIN_Y, leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)], onPage=page_decoration))
 pdf.build(story)
-reader = PdfReader(OUT / 'Krish_Lalani_Resume.pdf')
+reader = PdfReader(OUT / f'Krish_Lalani_Resume{SUFFIX}.pdf')
 text = '\n'.join(page.extract_text() for page in reader.pages)
-(OUT / 'Krish_Lalani_Resume.txt').write_text(text)
+(OUT / f'Krish_Lalani_Resume{SUFFIX}.txt').write_text(text)
 assert len(reader.pages) == 1, f'Resume must be one page; got {len(reader.pages)}'
-assert len(doc.tables) == 1 and len(doc.tables[0].rows) == 3
-for value in [profile['name'], profile['phone'], 'PROFESSIONAL EXPERIENCE', 'TECHNICAL SKILLS', 'PROJECTS', 'EDUCATION', '100+', '25+', '9.07', '9.89']:
+assert len(doc.tables) == (0 if ATS else 1), 'ATS build must contain no tables'
+if not ATS:
+    assert len(doc.tables[0].rows) == 4
+for value in [profile['name'], profile['phone'], 'PROFESSIONAL SUMMARY', 'Core competencies',
+              'PROFESSIONAL EXPERIENCE', 'TECHNICAL SKILLS', 'PROJECTS', 'EDUCATION',
+              'AWARDS', '100+', '25+', '9.07', '9.89']:
     assert value in text, value
 pdf_links = [annotation.get_object().get('/A', {}).get('/URI') for annotation in reader.pages[0].get('/Annots', [])]
 docx_links = [rel.target_ref for rel in doc.part.rels.values() if rel.reltype == RT.HYPERLINK]
@@ -373,4 +433,5 @@ for project, url in zip(data['projects'], project_urls):
     assert project['title'] in text
     assert url in pdf_links, url
     assert url in docx_links, url
-print(f'Built PDF (verified 1 page) and Word resume: {len(text.split())} words; all 6 projects and their PDF/Word links verified.')
+label = 'ATS' if ATS else 'design'
+print(f'Built {label} resume (PDF verified 1 page) + Word: {len(text.split())} words; all 6 projects and their PDF/Word links verified.')

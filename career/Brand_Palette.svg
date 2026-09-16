@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+<rect width="1200" height="600" fill="#101a16"/>
+<text x="72" y="82" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="13" letter-spacing="3.4" fill="#a8dcb0">BRAND PALETTE</text>
+<text x="70" y="124" font-family="Inter, Arial, Helvetica, sans-serif" font-size="30" font-weight="600" letter-spacing="-.8" fill="#edf2e9">Krish Lalani — colour system</text>
+<g>
+  <rect x="72" y="150" width="238" height="120" rx="10" fill="#101a16" stroke="#304034"/>
+  <text x="88" y="190" font-family="Inter, Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#edf2e9">Ink</text>
+  <text x="88" y="256" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="13" fill="#abb9ae">#101a16</text>
+  <text x="88" y="298" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="12" letter-spacing="1.4" fill="#abb9ae">BACKGROUND, DARK</text>
+</g>
+<g>
+  <rect x="342" y="150" width="238" height="120" rx="10" fill="#1b2a21" stroke="#304034"/>
+  <text x="358" y="190" font-family="Inter, Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#edf2e9">Panel</text>
+  <text x="358" y="256" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="13" fill="#abb9ae">#1b2a21</text>
+  <text x="358" y="298" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="12" letter-spacing="1.4" fill="#abb9ae">CARDS, ELEVATED</text>
+</g>
+<g>
+  <rect x="612" y="150" width="238" height="120" rx="10" fill="#304034" stroke="#304034"/>
+  <text x="628" y="190" font-family="Inter, Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#edf2e9">Line</text>
+  <text x="628" y="256" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="13" fill="#abb9ae">#304034</text>
+  <text x="628" y="298" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="12" letter-spacing="1.4" fill="#abb9ae">BORDERS, DARK</text>
+</g>
+<g>
+  <rect x="882" y="150" width="238" height="120" rx="10" fill="#a8dcb0" stroke="#304034"/>
+  <text x="898" y="190" font-family="Inter, Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#172b25">Mint</text>
+  <text x="898" y="256" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="13" fill="#5d6d64">#a8dcb0</text>
+  <text x="898" y="298" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="12" letter-spacing="1.4" fill="#abb9ae">ACCENT, DARK</text>
+</g>
+<g>
+  <rect x="72" y="360" width="238" height="120" rx="10" fill="#23745a" stroke="#304034"/>
+  <text x="88" y="400" font-family="Inter, Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#edf2e9">Forest</text>
+  <text x="88" y="466" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="13" fill="#abb9ae">#23745a</text>
+  <text x="88" y="508" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="12" letter-spacing="1.4" fill="#abb9ae">ACCENT, LIGHT</text>
+</g>
+<g>
+  <rect x="342" y="360" width="238" height="120" rx="10" fill="#f7f9f5" stroke="#304034"/>
+  <text x="358" y="400" font-family="Inter, Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#172b25">Paper</text>
+  <text x="358" y="466" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="13" fill="#5d6d64">#f7f9f5</text>
+  <text x="358" y="508" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="12" letter-spacing="1.4" fill="#abb9ae">BACKGROUND, LIGHT</text>
+</g>
+<g>
+  <rect x="612" y="360" width="238" height="120" rx="10" fill="#172b25" stroke="#304034"/>
+  <text x="628" y="400" font-family="Inter, Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#edf2e9">Slate</text>
+  <text x="628" y="466" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="13" fill="#abb9ae">#172b25</text>
+  <text x="628" y="508" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="12" letter-spacing="1.4" fill="#abb9ae">TEXT, LIGHT</text>
+</g>
+<g>
+  <rect x="882" y="360" width="238" height="120" rx="10" fill="#5d6d64" stroke="#304034"/>
+  <text x="898" y="400" font-family="Inter, Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#edf2e9">Muted</text>
+  <text x="898" y="466" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="13" fill="#abb9ae">#5d6d64</text>
+  <text x="898" y="508" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="12" letter-spacing="1.4" fill="#abb9ae">SECONDARY TEXT</text>
+</g>
+</svg>

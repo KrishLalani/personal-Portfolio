@@ -6,11 +6,18 @@ const SESSION_KEY = "intro-played-v1";
 
 export function IntroLoader() {
   const reduce = useReducedMotion();
-  const [show, setShow] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return sessionStorage.getItem(SESSION_KEY) !== "1";
-  });
+  // Starts false so server and client render the same first frame; the effect
+  // below turns it on straight after mount if the intro has not played yet.
+  const [show, setShow] = useState(false);
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem(SESSION_KEY) !== "1") setShow(true);
+    } catch {
+      /* Private mode: skip the intro rather than block the page. */
+    }
+  }, []);
 
   useEffect(() => {
     if (!show) return;
@@ -40,11 +47,14 @@ export function IntroLoader() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show, reduce]);
 
   function finish() {
-    sessionStorage.setItem(SESSION_KEY, "1");
+    try {
+      sessionStorage.setItem(SESSION_KEY, "1");
+    } catch {
+      /* Non-fatal: the intro simply replays next visit. */
+    }
     setShow(false);
   }
 
@@ -80,7 +90,11 @@ export function IntroLoader() {
                     }}
                     className="block font-display text-[clamp(3rem,12vw,9rem)] leading-[0.9] tracking-[-0.03em] text-foreground"
                   >
-                    {i === 1 ? <span className="italic text-aurora">{word}</span> : word}
+                    {i === 1 ? (
+                      <span className="italic text-aurora">{word}</span>
+                    ) : (
+                      word
+                    )}
                   </motion.span>
                 </div>
               ))}

@@ -1,6 +1,7 @@
 import { ArrowUpRight, ScanLine, Server } from "lucide-react";
 import { biography, profile } from "@/lib/portfolio-data";
 import avatar from "@/assets/avatar-optimized.webp";
+import { Reveal } from "./Reveal";
 export function About() {
   return (
     <section
@@ -10,7 +11,7 @@ export function About() {
       className="portfolio-section"
     >
       <div className="portfolio-container about-layout">
-        <div className="about-portrait">
+        <Reveal className="about-portrait" direction="right" distance={34}>
           <img
             src={avatar}
             alt={`Portrait of ${profile.name}`}
@@ -22,8 +23,13 @@ export function About() {
             <span>{profile.name}</span>
             <span>{profile.location}</span>
           </div>
-        </div>
-        <div className="about-copy">
+        </Reveal>
+        <Reveal
+          className="about-copy"
+          direction="left"
+          distance={34}
+          delay={0.1}
+        >
           <p className="eyebrow">04 / About me</p>
           <h2 id="about-heading">
             A developer.
@@ -51,7 +57,7 @@ export function About() {
           >
             More about my journey on LinkedIn <ArrowUpRight size={16} />
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

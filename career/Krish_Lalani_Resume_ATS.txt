@@ -8,38 +8,29 @@ Software developer specializing in Python backends and computer vision. Builds a
 pipelines for industrial inspection, and designs REST APIs, database schemas, and access controls for platforms with real users.
 Led a four-engineer backend team on a platform that supported a live examination with 100+ students.
 TECHNICAL SKILLS
-Core competencies:
-Backend Development, REST API Design, Computer Vision, Object Detection, Model Deployment,
-Database Design, Technical Leadership
-Languages &
-backend:
-Python, JavaScript, SQL, Flask, FastAPI, Django, Node.js, Express, REST APIs, JWT
-Vision & data:
-YOLO, OpenCV, PyTorch, PostgreSQL, MySQL, SQLite, MongoDB, Supabase
-Tools:
-Git, Docker, Linux, Azure DevOps, CI/CD, Postman, Beautiful Soup, Selenium
+Core competencies: Backend Development, REST API Design, Computer Vision, Object Detection, Model Deployment, Database
+Design, Technical Leadership
+Languages & backend: Python, JavaScript, SQL, Flask, FastAPI, Django, Node.js, Express, REST APIs, JWT
+Vision & data: YOLO, OpenCV, PyTorch, PostgreSQL, MySQL, SQLite, MongoDB, Supabase
+Tools: Git, Docker, Linux, Azure DevOps, CI/CD, Postman, Beautiful Soup, Selenium
 PROFESSIONAL EXPERIENCE
-Software Developer | Microble Technologies
- Apr 2026–Present
-• Develop machine-vision systems for industrial inspection, including insulator defect detection.
+Software Developer | Microble Technologies | Apr 2026–Present
+ • Develop machine-vision systems for industrial inspection, including insulator defect detection.
 • Own training data end to end: image collection, annotation, and augmentation for YOLO models.
 • Train, evaluate, and deploy vision models into production inspection workflows using OpenCV.
-Python Developer | Empire Circuits LLC
- Sep 2025–Apr 2026
-• Built PondGuard’s bird-detection software with event capture and automated deterrent responses.
+Python Developer | Empire Circuits LLC | Sep 2025–Apr 2026
+ • Built PondGuard’s bird-detection software with event capture and automated deterrent responses.
 • Built an OpenCV image-stitching pipeline for PCB quality inspection.
 • Built real-time monitoring dashboards with ThingsBoard, Grafana, and MQTT.
-Python Developer | Infotact Solution
- Apr 2025–Jul 2025
-• Developed Droplify, an e-commerce price-tracking application, on Flask and SQLite.
+Python Developer | Infotact Solution | Apr 2025–Jul 2025
+ • Developed Droplify, an e-commerce price-tracking application, on Flask and SQLite.
 • Added Beautiful Soup and Selenium data collection, analytics dashboards, and price-drop alerts.
-Backend Developer & Team Lead | CHARUSAT University
- Jun 2024–Aug 2024
-• Led a four-engineer backend team on Placestar, supporting a live examination with 100+ students.
+Backend Developer & Team Lead | CHARUSAT University | Jun 2024–Aug 2024
+ • Led a four-engineer backend team on Placestar, supporting a live examination with 100+ students.
 • Designed Node.js/Express REST APIs, MySQL schemas, JWT auth, and role-based access controls.
 • Coordinated sprint planning, code reviews, and backend optimization.
 PROJECTS
- PondGuard | Python · Flask · YOLO11
+PondGuard | Python · Flask · YOLO11
 Owned bird-detection software with event capture and automated sprinkler and red-beam deterrents.
 Placestar | Node.js · Express · MySQL
 Built placement/exam APIs with Wi-Fi restrictions and single-session controls; supported 100+ students.
@@ -52,11 +43,9 @@ Led club-management APIs, database design, and authentication; piloted at CHARUS
 Worker Location Management | ThingsBoard · Geofencing
 Configured zone/inactivity rules and alerts; validated monitoring behavior using RSSI signal data.
 EDUCATION
-B.E. in Computer Engineering
- 2023–2026
+B.E. in Computer Engineering | 2023–2026
 CHARUSAT University, Anand | CGPA: 9.07/10
-Diploma in Computer Engineering
- 2020–2023
+Diploma in Computer Engineering | 2020–2023
 A.V. Parekh Technical Institute, Rajkot | CGPA: 9.89/10 · Top 10 Merit Award
 AWARDS & RECOGNITION
 Top 10 Merit Award, Diploma in Computer Engineering (A.V. Parekh Institute) | Indus Hackathon 2025 participant

@@ -1,6 +1,7 @@
 import { GraduationCap } from "lucide-react";
 import { education, highlights } from "@/lib/portfolio-data";
 import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 export function Education() {
   return (
     <section
@@ -16,8 +17,13 @@ export function Education() {
           title="A foundation to build on."
         />
         <div className="education-grid">
-          {education.map((item) => (
-            <article key={item.degree} className="education-card">
+          {education.map((item, i) => (
+            <Reveal
+              as="article"
+              key={item.degree}
+              delay={i * 0.09}
+              className="education-card spotlight"
+            >
               <div className="flex justify-between gap-4">
                 <GraduationCap size={23} strokeWidth={1.5} />
                 <span className="eyebrow">{item.year}</span>
@@ -25,7 +31,7 @@ export function Education() {
               <h3>{item.degree}</h3>
               <p>{item.institution}</p>
               <strong>{item.detail}</strong>
-            </article>
+            </Reveal>
           ))}
         </div>
         <div

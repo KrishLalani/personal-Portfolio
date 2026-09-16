@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { projects, profile } from "@/lib/portfolio-data";
 import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
+import { useSpotlight } from "@/hooks/use-spotlight";
 const categories = ["All work", "Computer vision", "Backend", "Monitoring"];
 const projectMeta = [
   {
@@ -68,6 +70,7 @@ export function Projects() {
       (project) => filter === "All work" || project.groups.includes(filter),
     );
   const carousel = useMobileCarousel(visible.length, filter);
+  const spotlight = useSpotlight();
   const { setActive, setPaused, viewportRef, goTo } = carousel;
 
   useEffect(() => {
@@ -142,11 +145,14 @@ export function Projects() {
           ref={viewportRef}
           {...carousel.interactionProps}
         >
-          {visible.map((project) => (
-            <article
-              className={`project-card project-${project.theme}`}
+          {visible.map((project, index) => (
+            <Reveal
+              as="article"
+              delay={Math.min(index, 3) * 0.08}
+              className={`project-card project-${project.theme} spotlight`}
               id={`project-${slug(project.title)}`}
               key={project.title}
+              onPointerMove={spotlight}
             >
               <div
                 className="project-visual"
@@ -217,7 +223,7 @@ export function Projects() {
                   </div>
                 </details>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
         <a
