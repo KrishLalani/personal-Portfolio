@@ -11,8 +11,6 @@ import {
 } from "lucide-react";
 import { coreSkills, skills } from "@/lib/portfolio-data";
 import { SectionHeading } from "./SectionHeading";
-import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
-import { MobileCarouselControls } from "./MobileCarouselControls";
 import { Reveal } from "./Reveal";
 import { useSpotlight } from "@/hooks/use-spotlight";
 const icons: Record<string, LucideIcon> = {
@@ -31,7 +29,6 @@ export function Skills() {
     { length: Math.ceil(groups.length / 2) },
     (_, index) => groups.slice(index * 2, index * 2 + 2),
   );
-  const carousel = useMobileCarousel(rows.length);
   const spotlight = useSpotlight();
   return (
     <section
@@ -55,18 +52,7 @@ export function Skills() {
             ))}
           </ul>
         </div>
-        <MobileCarouselControls
-          carousel={carousel}
-          count={rows.length}
-          itemLabel="skill row"
-          viewportId="skill-slides"
-        />
-        <div
-          className="skills-grid mobile-carousel-track"
-          id="skill-slides"
-          ref={carousel.viewportRef}
-          {...carousel.interactionProps}
-        >
+        <div className="skills-grid">
           {rows.map((row, rowIndex) => (
             <div className="skill-row" key={row[0].category}>
               {row.map((group, columnIndex) => {

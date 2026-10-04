@@ -16,8 +16,8 @@
  * Usage: node scripts/build-brand.mjs
  */
 import { mkdirSync, writeFileSync } from "node:fs";
-import { spawn } from "node:child_process";
-import { setTimeout as sleep } from "node:timers/promises";
+import { fileURLToPath } from "node:url";
+import { chromium } from "@playwright/test";
 
 const OUT = new URL("../career/", import.meta.url);
 mkdirSync(OUT, { recursive: true });
@@ -51,88 +51,20 @@ const esc = (value) =>
     .replace(/>/g, "&gt;");
 
 /* ------------------------------------------------------------- the banner */
-/**
- * LinkedIn renders this 1584x396 image differently per surface. Two areas are
- * treated as unsafe and carry nothing but texture:
- *   - bottom-left ~0-330 x ~230-396, where the profile photo sits on desktop
- *   - the outer left/right thirds, which mobile crops away
- * All wording lives between x=366 and x=1250.
- */
+/** Minimal typography with space on the left for LinkedIn's profile photo. */
 function banner({ light = false } = {}) {
   const bg = light ? C.lightBg : C.ink;
-  const bg2 = light ? C.lightSurface : "#16332a";
   const text = light ? C.lightText : C.text;
   const muted = light ? C.lightMuted : C.muted;
   const accent = light ? C.primaryDeep : C.primary;
-  const line = light ? C.lightLine : C.panelLine;
-  const panel = light ? "#ffffff" : "#16271f";
-  const gridOpacity = light ? ".5" : ".42";
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396" role="img" aria-label="Krish Lalani, Software Developer. Backend systems, computer vision, practical software.">
-<defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-    <stop stop-color="${bg}"/><stop offset="1" stop-color="${bg2}"/>
-  </linearGradient>
-  <radialGradient id="halo" cx=".5" cy=".5">
-    <stop stop-color="${accent}" stop-opacity="${light ? ".14" : ".20"}"/>
-    <stop offset="1" stop-color="${accent}" stop-opacity="0"/>
-  </radialGradient>
-  <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
-    <path d="M28 0H0V28" stroke="${accent}" stroke-opacity="${light ? ".10" : ".07"}" fill="none"/>
-  </pattern>
-</defs>
-
-<rect width="1584" height="396" fill="url(#bg)"/>
-<rect width="1584" height="396" fill="url(#grid)" opacity="${gridOpacity}"/>
-<ellipse cx="1290" cy="198" rx="390" ry="370" fill="url(#halo)"/>
-
-<!-- Texture only: LinkedIn's profile photo overlaps this corner. -->
-<g fill="none" stroke="${accent}" stroke-opacity="${light ? ".22" : ".16"}">
-  <circle cx="158" cy="182" r="110"/>
-  <circle cx="158" cy="182" r="164" stroke-dasharray="2 9"/>
-  <path d="M0 182H270M158 18V296"/>
-</g>
-<g fill="${accent}" opacity=".55"><circle cx="236" cy="104" r="4"/><circle cx="74" cy="256" r="2.5"/></g>
-<path d="M318 48V348" stroke="${line}"/>
-
-<!-- Message block -->
-<text x="366" y="78" font-family="${SANS}" font-size="16" font-weight="600" letter-spacing="3.6" fill="${text}">KRISH LALANI</text>
-<text x="366" y="104" font-family="${MONO}" font-size="10" letter-spacing="2.6" fill="${muted}">SOFTWARE DEVELOPER</text>
-<text x="363" y="178" font-family="${SANS}" font-size="52" font-weight="700" letter-spacing="-2" fill="${text}">Backend systems.</text>
-<text x="364" y="246" font-family="${SERIF}" font-size="64" font-style="italic" letter-spacing="-1.4" fill="${accent}">Computer vision.</text>
-<text x="366" y="292" font-family="${SANS}" font-size="25" font-weight="400" letter-spacing="-.4" fill="${muted}">Practical software.</text>
-<path d="M366 316H986" stroke="${line}"/>
-<text x="366" y="345" font-family="${MONO}" font-size="12" letter-spacing="2" fill="${accent}">PYTHON · NODE.JS · YOLO · OPENCV</text>
-
-<!-- Two disciplines converging on a shipped product -->
-<text x="1064" y="48" font-family="${MONO}" font-size="9" letter-spacing="2.4" fill="${muted}">FROM INPUT TO IMPACT</text>
-<g fill="${panel}" stroke="${line}">
-  <rect x="1056" y="66" width="300" height="104" rx="10"/>
-  <rect x="1056" y="216" width="300" height="108" rx="10"/>
-</g>
-<path d="M1056 102H1356M1056 252H1356" stroke="${line}"/>
-<text x="1074" y="92" font-family="${MONO}" font-size="10" letter-spacing="1.8" fill="${accent}">{ } BACKEND</text>
-<text x="1074" y="242" font-family="${MONO}" font-size="10" letter-spacing="1.8" fill="${accent}">[ ] COMPUTER VISION</text>
-<g font-family="${MONO}" font-size="11" fill="${muted}">
-  <text x="1074" y="126">request → API → auth → data</text>
-  <text x="1074" y="148">schema / access control</text>
-  <text x="1120" y="284">frame → model → detection</text>
-  <text x="1120" y="306">train / evaluate / deploy</text>
-</g>
-<!-- Small detector glyph beside the vision panel -->
-<g stroke="${accent}" fill="none" stroke-opacity=".8">
-  <rect x="1074" y="266" width="34" height="34" rx="3"/>
-  <path d="M1074 277h34M1074 289h34M1085 266v34M1097 266v34" stroke-opacity=".3"/>
-</g>
-<path d="M1356 118h44v94h16M1356 288h44v-76" fill="none" stroke="${accent}" stroke-opacity=".45"/>
-<g fill="${accent}"><circle cx="1360" cy="118" r="3.5"/><circle cx="1360" cy="288" r="3.5"/></g>
-<g fill="${panel}" stroke="${accent}" stroke-opacity=".55">
-  <rect x="1416" y="176" width="72" height="72" rx="14"/>
-</g>
-<path d="M1440 212l10 11 18-21" fill="none" stroke="${accent}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="1452" y="272" font-family="${MONO}" font-size="9" letter-spacing="1.8" fill="${muted}" text-anchor="middle">SHIPPED</text>
-
-<text x="1056" y="360" font-family="${MONO}" font-size="11" letter-spacing=".6" fill="${muted}">portfolio.krishlalani.dev</text>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396" role="img" aria-label="Krish Lalani. Software Developer. Python, Backend, Computer Vision.">
+<rect width="1584" height="396" fill="${bg}"/>
+<path d="M440 102V286" stroke="${accent}" stroke-width="3"/>
+<text x="480" y="157" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700" letter-spacing="-2" fill="${text}">Krish Lalani</text>
+<text x="483" y="205" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="${muted}">Software Developer</text>
+<text x="483" y="249" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="${accent}">Python · Backend · Computer Vision</text>
+<text x="483" y="296" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="${muted}">portfolio.krishlalani.dev</text>
 </svg>`;
 }
 
@@ -251,7 +183,7 @@ ${cells}
 }
 
 /* ------------------------------------------------------- write + rasterise */
-const assets = [
+const allAssets = [
   ["LinkedIn_Banner", banner(), 1584, 396],
   ["LinkedIn_Banner_Light", banner({ light: true }), 1584, 396],
   [
@@ -299,96 +231,35 @@ const assets = [
   ["Brand_Palette", palette(), 1200, 600],
 ];
 
+const assets = process.argv.includes("--banners-only")
+  ? allAssets.filter(([name]) => name.startsWith("LinkedIn_Banner"))
+  : allAssets;
+
 for (const [name, svg] of assets) {
   writeFileSync(new URL(`${name}.svg`, OUT), svg + "\n");
 }
-console.log(`Wrote ${assets.length} SVG assets.`);
 
-/* Rasterise through headless Chrome so the real webfonts are applied. */
-const CHROME =
-  process.env.CHROME_PATH ||
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const PORT = 9333;
-const child = spawn(
-  CHROME,
-  [
-    "--headless=new",
-    `--remote-debugging-port=${PORT}`,
-    "--disable-gpu",
-    "--hide-scrollbars",
-    `--user-data-dir=${process.env.TMPDIR ?? "/tmp"}/kl-brand-profile`,
-    "about:blank",
-  ],
-  { stdio: "ignore", detached: true },
+const browser = await chromium.launch(
+  process.env.CHROME_PATH
+    ? { executablePath: process.env.CHROME_PATH }
+    : { channel: "chrome" },
 );
-
-async function connect() {
-  for (let attempt = 0; attempt < 40; attempt++) {
-    try {
-      const info = await fetch(`http://127.0.0.1:${PORT}/json/version`);
-      if (info.ok) return;
-    } catch {
-      /* Chrome is still starting. */
-    }
-    await sleep(250);
-  }
-  throw new Error("Headless Chrome did not start");
-}
-await connect();
-
-const target = await (
-  await fetch(`http://127.0.0.1:${PORT}/json/new?about:blank`, {
-    method: "PUT",
-  })
-).json();
-const ws = new WebSocket(target.webSocketDebuggerUrl);
-let id = 0;
-const pending = new Map();
-ws.addEventListener("message", (event) => {
-  const message = JSON.parse(event.data);
-  if (message.id && pending.has(message.id)) {
-    pending.get(message.id)(message.result);
-    pending.delete(message.id);
-  }
-});
-await new Promise((resolve) => ws.addEventListener("open", resolve));
-const send = (method, params = {}) =>
-  new Promise((resolve) => {
-    const next = ++id;
-    pending.set(next, resolve);
-    ws.send(JSON.stringify({ id: next, method, params }));
-  });
-
-await send("Page.enable");
-for (const [name, svg, width, height] of assets) {
-  const html = `<!doctype html><html><head><meta charset="utf-8">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=block">
-<style>html,body{margin:0;padding:0;background:transparent}svg{display:block}</style></head>
-<body>${svg}</body></html>`;
-  await send("Emulation.setDeviceMetricsOverride", {
-    width,
-    height,
-    deviceScaleFactor: 2,
-    mobile: false,
-  });
-  await send("Page.navigate", {
-    url: "data:text/html;charset=utf-8," + encodeURIComponent(html),
-  });
-  await sleep(1400); // let the webfonts load and lay out
-  const shot = await send("Page.captureScreenshot", {
-    format: "png",
-    clip: { x: 0, y: 0, width, height, scale: 1 },
-    captureBeyondViewport: true,
-  });
-  writeFileSync(new URL(`${name}.png`, OUT), Buffer.from(shot.data, "base64"));
-  console.log(`  ${name}.png  ${width}x${height} @2x`);
-}
-ws.close();
 try {
-  process.kill(-child.pid);
-} catch {
-  /* Chrome already exited. */
+  for (const [name, svg, width, height] of assets) {
+    const isBanner = name.startsWith("LinkedIn_Banner");
+    const page = await browser.newPage({
+      viewport: { width, height },
+      deviceScaleFactor: isBanner ? 1 : 2,
+    });
+    await page.setContent(`<!doctype html><html><head><meta charset="utf-8">
+      ${isBanner ? "" : '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=block">'}
+      <style>html,body{margin:0;padding:0;background:transparent}svg{display:block}</style>
+      </head><body>${svg}</body></html>`);
+    await page.evaluate(() => document.fonts.ready);
+    await page.screenshot({ path: fileURLToPath(new URL(`${name}.png`, OUT)) });
+    await page.close();
+    console.log(`${name}.png: ${width} × ${height}${isBanner ? "" : " @2x"}`);
+  }
+} finally {
+  await browser.close();
 }
-console.log("Brand kit built.");
-process.exit(0);

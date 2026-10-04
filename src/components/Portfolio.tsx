@@ -8,8 +8,6 @@ import { Education } from "./portfolio/Education";
 import { Contact } from "./portfolio/Contact";
 import { Footer } from "./portfolio/Footer";
 import { AmbientField } from "./portfolio/AmbientField";
-import { CustomCursor } from "./portfolio/CustomCursor";
-import { IntroLoader } from "./portfolio/IntroLoader";
 import { ScrollProgress } from "./portfolio/ScrollProgress";
 import { TechMarquee } from "./portfolio/TechMarquee";
 
@@ -19,9 +17,7 @@ export function Portfolio() {
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <IntroLoader />
       <AmbientField />
-      <CustomCursor />
       <ScrollProgress />
       <div className="relative z-10">
         <Nav />

@@ -1,5 +1,6 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useEffect, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
+import { useInView } from "framer-motion";
 
 interface Props {
   value: number;
@@ -12,7 +13,7 @@ export function Counter({ value, suffix = "", duration = 1500 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-15% 0px" });
   const reduce = useReducedMotion();
-  const [shown, setShown] = useState(0);
+  const [shown, setShown] = useState(value);
 
   useEffect(() => {
     if (!inView) return;

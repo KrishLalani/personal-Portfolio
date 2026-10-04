@@ -47,6 +47,8 @@ Thumbs.db
 
 # Testing / coverage
 coverage
+test-results
+playwright-report
 *.local
 
 # Misc

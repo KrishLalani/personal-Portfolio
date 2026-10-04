@@ -56,7 +56,7 @@ accent colour, the third in regular weight. Do not reorder or reword the pair.
 | `Krish_Lalani_Resume.pdf` | Letter, 1 page | The version a person reads |
 | `Krish_Lalani_Resume_ATS.pdf` | Letter, 1 page | The version software parses |
 
-PNGs are exported at 2× for retina screens. The `.svg` beside each PNG is the
+Banners are exported at exactly 1584 × 396. Other PNGs are exported at 2×. The `.svg` beside each PNG is the
 editable source.
 
 ## Rebuilding

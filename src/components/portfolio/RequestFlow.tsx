@@ -1,5 +1,5 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
 
 /**
  * Animated request pipeline for the backend discipline.

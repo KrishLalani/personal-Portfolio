@@ -1,5 +1,6 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -12,7 +13,6 @@ import { DetectionCanvas } from "./DetectionCanvas";
 import { RequestFlow } from "./RequestFlow";
 import { SplitText } from "./SplitText";
 import { Counter } from "./Counter";
-import { Magnetic } from "./Magnetic";
 
 const systems = [
   {
@@ -44,7 +44,11 @@ export function Hero() {
 
   const fade = (delay: number) =>
     reduce
-      ? {}
+      ? {
+          initial: false as const,
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0 },
+        }
       : {
           initial: { opacity: 0, y: 18 },
           animate: { opacity: 1, y: 0 },
@@ -91,20 +95,16 @@ export function Hero() {
             </motion.p>
 
             <motion.div className="flex flex-wrap gap-3 mt-8" {...fade(0.6)}>
-              <Magnetic>
-                <a href="#work" className="button-primary">
-                  Explore my work <ArrowUpRight size={17} />
-                </a>
-              </Magnetic>
-              <Magnetic>
-                <a
-                  href={profile.resume}
-                  download="Krish_Lalani_Resume.pdf"
-                  className="button-secondary"
-                >
-                  <FileDown size={16} /> Download resume
-                </a>
-              </Magnetic>
+              <a href="#work" className="button-primary">
+                Explore my work <ArrowUpRight size={17} />
+              </a>
+              <a
+                href={profile.resume}
+                download="Krish_Lalani_Resume.pdf"
+                className="button-secondary"
+              >
+                <FileDown size={16} /> Download resume
+              </a>
             </motion.div>
 
             <motion.p className="hero-current" {...fade(0.7)}>

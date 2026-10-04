@@ -1,10 +1,6 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useRef, type ReactNode, type MouseEvent } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useReducedMotion,
-} from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "ghost";

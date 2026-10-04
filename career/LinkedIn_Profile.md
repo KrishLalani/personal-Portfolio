@@ -34,10 +34,7 @@ LinkedIn keeps redirecting the old URL, so nothing breaks in the meantime.
 
 **Banner.** `LinkedIn_Banner.png` (1584 × 396). `LinkedIn_Banner_Light.png` is the same layout on the light palette.
 
-Both leave two areas deliberately empty, because LinkedIn covers them:
-
-- **Bottom-left**, roughly 330 × 165 px, sits under your profile photo on desktop.
-- **The outer left and right thirds** are cropped on mobile, so every word sits in the middle band.
+A simple layout with your name, role, specialties, and website. The left side stays clear of the profile photo, with the text kept near the center for smaller displays. Check LinkedIn’s crop preview before saving.
 
 **Photo.** Upload at 400 × 400 or larger, square. Face filling roughly 60% of the frame, looking at the camera, plain or softly blurred background. The portrait already on your website works. Set its visibility to **All LinkedIn members** — a photo restricted to your network is invisible to exactly the recruiters you want.
 

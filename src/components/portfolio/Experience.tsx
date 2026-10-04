@@ -1,9 +1,9 @@
 import { experience } from "@/lib/portfolio-data";
 import { SectionHeading } from "./SectionHeading";
-import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
-import { MobileCarouselControls } from "./MobileCarouselControls";
 import { Reveal } from "./Reveal";
 import { useSpotlight } from "@/hooks/use-spotlight";
+import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
+import { MobileCarouselControls } from "./MobileCarouselControls";
 export function Experience() {
   const carousel = useMobileCarousel<HTMLOListElement>(experience.length);
   const spotlight = useSpotlight();
@@ -32,6 +32,8 @@ export function Experience() {
           id="experience-slides"
           ref={carousel.viewportRef}
           {...carousel.interactionProps}
+          tabIndex={0}
+          aria-label="Experience slides"
         >
           {experience.map((item, i) => (
             <Reveal

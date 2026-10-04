@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
-import { MobileCarouselControls } from "./MobileCarouselControls";
 import {
   ArrowUpRight,
   ChevronDown,
@@ -16,6 +14,8 @@ import { projects, profile } from "@/lib/portfolio-data";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { useSpotlight } from "@/hooks/use-spotlight";
+import { useMobileCarousel } from "@/hooks/use-mobile-carousel";
+import { MobileCarouselControls } from "./MobileCarouselControls";
 const categories = ["All work", "Computer vision", "Backend", "Monitoring"];
 const projectMeta = [
   {
@@ -69,9 +69,9 @@ export function Projects() {
     .filter(
       (project) => filter === "All work" || project.groups.includes(filter),
     );
-  const carousel = useMobileCarousel(visible.length, filter);
   const spotlight = useSpotlight();
-  const { setActive, setPaused, viewportRef, goTo } = carousel;
+  const carousel = useMobileCarousel(visible.length, filter);
+  const { goTo, viewportRef, setPaused } = carousel;
 
   useEffect(() => {
     let frame = 0;
@@ -79,12 +79,16 @@ export function Projects() {
       if (!window.location.hash.startsWith("#project-")) return;
       setFilter("All work");
       setPaused(true);
+      cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
+        const target = document.getElementById(window.location.hash.slice(1));
         const cards = Array.from(viewportRef.current?.children ?? []);
-        const index = cards.findIndex(
-          (card) => `#${card.id}` === window.location.hash,
-        );
+        const index = cards.findIndex((card) => card === target);
         if (index >= 0) goTo(index, false);
+        target?.scrollIntoView({
+          block: "start",
+          behavior: "instant",
+        });
       });
     };
     showLinkedProject();
@@ -93,7 +97,7 @@ export function Projects() {
       cancelAnimationFrame(frame);
       window.removeEventListener("hashchange", showLinkedProject);
     };
-  }, [goTo, setPaused, viewportRef]);
+  }, [goTo, viewportRef, setPaused]);
   return (
     <section
       tabIndex={-1}
@@ -120,8 +124,8 @@ export function Projects() {
               key={category}
               onClick={() => {
                 setFilter(category);
-                setActive(0);
-                setPaused(true);
+                carousel.setActive(0);
+                carousel.setPaused(true);
               }}
               aria-pressed={filter === category}
             >
@@ -144,6 +148,9 @@ export function Projects() {
           id="project-slides"
           ref={viewportRef}
           {...carousel.interactionProps}
+          tabIndex={0}
+          role="region"
+          aria-label="Project slides"
         >
           {visible.map((project, index) => (
             <Reveal

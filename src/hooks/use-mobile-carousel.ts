@@ -6,7 +6,7 @@ import {
   type KeyboardEvent,
 } from "react";
 
-const mobileQuery = "(max-width: 580px)";
+const mobileQuery = "(max-width: 767px)";
 
 /** Native scrolling preserves touch gestures and access to every item without JavaScript. */
 export function useMobileCarousel<T extends HTMLElement = HTMLDivElement>(
@@ -14,7 +14,7 @@ export function useMobileCarousel<T extends HTMLElement = HTMLDivElement>(
   resetKey = "",
 ) {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(true);
   const viewportRef = useRef<T>(null);
   const goTo = useCallback((index: number, smooth = true) => {
     const viewport = viewportRef.current;
@@ -38,6 +38,11 @@ export function useMobileCarousel<T extends HTMLElement = HTMLDivElement>(
     let current = 0;
     const sync = () => {
       const cards = Array.from(viewport.children) as HTMLElement[];
+      if (!cards.length) return;
+      if (!window.matchMedia(mobileQuery).matches) {
+        viewport.style.height = "";
+        return;
+      }
       current = cards.reduce(
         (nearest, card, index) =>
           Math.abs(
@@ -53,6 +58,8 @@ export function useMobileCarousel<T extends HTMLElement = HTMLDivElement>(
         0,
       );
       setActive(current);
+      // A shorter slide should not leave the previous slide's empty space.
+      viewport.style.height = `${Math.ceil(cards[current].getBoundingClientRect().height)}px`;
     };
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -61,6 +68,8 @@ export function useMobileCarousel<T extends HTMLElement = HTMLDivElement>(
       { threshold: 0.35 },
     );
     observer.observe(viewport);
+    const resizeObserver = new ResizeObserver(sync);
+    for (const card of viewport.children) resizeObserver.observe(card);
     viewport.addEventListener("scroll", sync, { passive: true });
     window.addEventListener("resize", sync);
     sync();
@@ -77,6 +86,8 @@ export function useMobileCarousel<T extends HTMLElement = HTMLDivElement>(
     }, 6500);
     return () => {
       observer.disconnect();
+      resizeObserver.disconnect();
+      viewport.style.height = "";
       viewport.removeEventListener("scroll", sync);
       window.removeEventListener("resize", sync);
       window.clearInterval(timer);

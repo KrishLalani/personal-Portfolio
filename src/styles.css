@@ -88,7 +88,7 @@
   }
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 5rem;
   }
   body {
     margin: 0;
@@ -119,9 +119,8 @@
     background: var(--primary);
     color: var(--primary-foreground);
   }
-  section[id],
   article[id] {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 1rem;
   }
 }
 .portfolio-container {
@@ -260,8 +259,8 @@
 }
 .theme-toggle,
 .menu-toggle {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -311,7 +310,7 @@
 }
 .hero-layout {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   gap: 64px;
   align-items: center;
   padding-block: 66px;
@@ -603,7 +602,7 @@
   flex-wrap: wrap;
 }
 .project-filters button {
-  min-height: 40px;
+  min-height: 44px;
   padding: 8px 16px;
   border: 1px solid var(--border);
   border-radius: 5px;
@@ -1047,7 +1046,7 @@
   border-radius: 10px;
   padding: 58px;
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: 75px;
 }
 .contact-panel .eyebrow {
@@ -1352,57 +1351,6 @@
   .system-link {
     padding-inline: 16px;
   }
-  .mobile-carousel-track {
-    display: grid;
-    align-items: start;
-    position: relative;
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    gap: 16px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
-  }
-  .mobile-carousel-track::-webkit-scrollbar {
-    display: none;
-  }
-  .mobile-carousel-track > * {
-    min-width: 0;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-  }
-  .mobile-carousel-controls {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 14px;
-  }
-  .mobile-carousel-count {
-    font-size: 12px;
-    font-variant-numeric: tabular-nums;
-    font-weight: 600;
-  }
-  .mobile-carousel-hint {
-    margin-right: auto;
-    font-size: 10px;
-    color: var(--muted-foreground);
-  }
-  .mobile-carousel-controls button {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    flex-shrink: 0;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    background: var(--background);
-  }
-  .mobile-carousel-controls button:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-  }
   .project-visual-title {
     font-size: 39px;
     min-height: 115px;
@@ -1449,25 +1397,6 @@
   }
   .skill-group .skill-tags li {
     font-size: 10px;
-  }
-  .skills-grid .skill-row {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-  .skills-grid .skill-row .skill-group {
-    min-width: 0;
-    grid-column: auto;
-  }
-  .skills-grid .skill-row .skill-group:only-child {
-    grid-column: 1 / -1;
-  }
-  #skills .mobile-carousel-controls,
-  #experience .mobile-carousel-controls {
-    margin-top: 24px;
-  }
-  .mobile-carousel-controls + .mobile-carousel-track {
-    margin-top: 0;
   }
   .experience-list .experience-row {
     padding: 20px 18px;
@@ -1776,15 +1705,6 @@
   }
 }
 
-/* ---------- Custom cursor ---------- */
-body.has-custom-cursor,
-body.has-custom-cursor a,
-body.has-custom-cursor button,
-body.has-custom-cursor summary,
-body.has-custom-cursor [role="button"] {
-  cursor: none;
-}
-
 /* ---------- Film grain + ambient field ---------- */
 .ambient-field {
   position: fixed;
@@ -1799,7 +1719,6 @@ body.has-custom-cursor [role="button"] {
   background: var(--gradient-aurora);
   opacity: 0.16;
   filter: blur(80px);
-  will-change: transform;
 }
 .dark .ambient-field .aurora {
   opacity: 0.22;
@@ -2050,12 +1969,14 @@ body.has-custom-cursor [role="button"] {
 .detector-frame {
   position: relative;
   overflow: hidden;
+  height: clamp(150px, 22svh, 210px);
 }
 .detector canvas {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 10;
+  height: 100%;
   touch-action: pan-y;
 }
 .detector-hud {
@@ -2209,7 +2130,6 @@ body.has-custom-cursor [role="button"] {
 .tilt {
   transform-style: preserve-3d;
   transition: transform 0.5s var(--ease-out-expo);
-  will-change: transform;
 }
 
 /* ---------- Tech marquee strip ---------- */
@@ -2244,7 +2164,6 @@ body.has-custom-cursor [role="button"] {
 /* ---------- Magnetic button shell ---------- */
 .magnetic {
   display: inline-block;
-  will-change: transform;
 }
 
 /* ---------- Animated stat counters ---------- */
@@ -2252,7 +2171,7 @@ body.has-custom-cursor [role="button"] {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
-  margin-top: 46px;
+  margin-top: 12px;
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
@@ -2776,4 +2695,503 @@ body.has-custom-cursor [role="button"] {
   opacity: 0;
   transform: translateY(12px);
   pointer-events: none;
+}
+
+/* Keep intrinsic text sizes from pushing grid columns beyond the viewport. */
+.hero-layout > *,
+.about-layout > *,
+.contact-panel > *,
+.experience-row > *,
+.footer-top > *,
+.skill-group {
+  min-width: 0;
+}
+.project-visual-title,
+.skill-tags li,
+.footer-reach a {
+  overflow-wrap: anywhere;
+}
+.hero-current {
+  flex-wrap: wrap;
+}
+.project-details summary svg,
+.contact-actions svg {
+  flex-shrink: 0;
+}
+.mobile-nav {
+  max-height: calc(100dvh - 66px);
+  overflow-y: auto;
+}
+.copy-row button,
+.system-tabs button {
+  min-height: 44px;
+}
+.cmdk-panel {
+  max-height: min(460px, 75dvh);
+}
+
+@media (max-width: 680px) {
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .project-description {
+    min-height: 0;
+  }
+  .about-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .about-portrait {
+    max-width: 360px;
+  }
+}
+@media (max-width: 580px) {
+  .experience-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .skills-grid {
+    margin-top: 24px;
+  }
+  .contact-panel {
+    padding: 28px 20px;
+  }
+  .contact-panel h2 {
+    font-size: clamp(30px, 8.4vw, 42px);
+  }
+  .contact-email {
+    font-size: clamp(13px, 4vw, 19px);
+    gap: 6px;
+    max-width: 100%;
+  }
+  .system-card .detector,
+  .system-card .reqflow {
+    margin-inline: 12px;
+  }
+}
+@media (max-width: 380px) {
+  .portfolio-container {
+    width: calc(100% - 32px);
+  }
+  .skills-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .skill-row:last-child .skill-group:last-child {
+    grid-column: auto;
+  }
+  .project-flow,
+  .system-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 14px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(26px, 8.4vw, 32px);
+  }
+}
+@media (hover: none) {
+  .project-card:hover,
+  .skill-group:hover,
+  .education-card:hover {
+    transform: none;
+  }
+}
+
+/* A compact opening composition for laptops, with no fixed content clipping. */
+@media (min-width: 1024px) {
+  .nav-inner {
+    min-height: 72px;
+  }
+  .hero-topline {
+    padding-block: 14px;
+  }
+  .hero-layout {
+    padding-block: 24px;
+    gap: 40px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(38px, 4.1vw, 58px);
+    margin-top: 18px;
+  }
+  .hero-description {
+    margin-top: 20px;
+    line-height: 1.7;
+  }
+  .hero-current {
+    margin-top: 20px;
+  }
+  .system-card-top {
+    padding: 12px 18px;
+  }
+  .system-tabs {
+    padding: 10px 14px 0;
+  }
+  .system-tabs button {
+    min-height: 38px;
+  }
+  .system-detail {
+    padding: 16px 20px;
+    min-height: 0;
+  }
+  .system-detail > span {
+    margin-top: 10px;
+  }
+  .system-link {
+    padding: 12px 20px;
+  }
+  .system-card .reqflow-track svg {
+    height: 72px;
+  }
+  .reqflow-label {
+    font-size: 11px;
+  }
+  .reqflow-detail {
+    font-size: 9px;
+  }
+  .detector-legend {
+    padding: 8px 10px;
+    gap: 6px 8px;
+  }
+  .detector-legend span {
+    font-size: 8px;
+    letter-spacing: 0.06em;
+  }
+  .detector-action {
+    padding: 5px 8px;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+  }
+  .stat-band article {
+    padding: 14px 18px;
+  }
+  .stat-band strong {
+    font-size: 34px;
+  }
+  .stat-band p {
+    font-size: 9px;
+    margin-top: 6px;
+  }
+  .hero-bottom {
+    padding-block: 16px;
+    margin-top: 16px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 850px) {
+  .hero-topline,
+  .system-flow {
+    display: none;
+  }
+  .hero-layout {
+    padding-block: 16px;
+  }
+  .hero-bottom {
+    margin-top: 12px;
+  }
+  .system-card .reqflow-track {
+    padding-block: 10px 0;
+  }
+  .system-card .reqflow-track svg {
+    height: 58px;
+  }
+  .system-card .reqflow-log ul {
+    min-height: 76px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 700px) {
+  .hero-bottom {
+    display: none;
+  }
+  .hero-layout {
+    padding-block: 16px;
+  }
+  .hero-section {
+    padding-bottom: 16px;
+  }
+}
+
+/* Tablets use a relaxed single-column hero instead of squeezing two columns. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 40px;
+    gap: 32px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(48px, 7vw, 64px);
+  }
+  .hero-copy {
+    max-width: 700px;
+  }
+  .hero-description {
+    max-width: 580px;
+  }
+  .system-card {
+    width: 100%;
+    max-width: none;
+  }
+  .system-content {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    padding-bottom: 16px;
+  }
+  .system-content > div:first-child {
+    grid-row: 1 / 3;
+  }
+  .system-flow {
+    grid-column: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .system-detail {
+    grid-column: 2;
+    padding-block: 16px 0;
+    min-height: 0;
+  }
+  .system-card .detector,
+  .system-card .reqflow {
+    margin-inline: 16px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .portfolio-container {
+    width: calc(100% - 40px);
+  }
+  .hero-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding-block: 32px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(30px, 8.7vw, 54px);
+    margin-top: 20px;
+  }
+  .hero-copy > .eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.09em;
+  }
+  .hero-description {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 22px;
+  }
+  .hero-current {
+    font-size: 11px;
+    margin-top: 20px;
+  }
+  .hero-copy .button-primary,
+  .hero-copy .button-secondary {
+    flex: 1 1 160px;
+    font-size: 12px;
+    padding-inline: 14px;
+  }
+  .system-card {
+    max-width: none;
+  }
+  .system-card-top {
+    font-size: 8px;
+    padding: 14px 16px;
+  }
+  .system-tabs {
+    padding: 10px 12px 0;
+  }
+  .system-tabs button {
+    flex: 1;
+    font-size: 11px;
+    padding-inline: 6px;
+  }
+  .system-flow {
+    display: none;
+  }
+  .system-detail {
+    padding: 18px 16px;
+    min-height: 0;
+  }
+  .system-detail h2 {
+    font-size: 18px;
+  }
+  .system-detail p {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .system-detail > span {
+    font-size: 9px;
+    margin-top: 12px;
+  }
+  .system-link {
+    min-height: 46px;
+    font-size: 11px;
+  }
+  .detector-hud {
+    padding: 12px;
+    font-size: 8px;
+    letter-spacing: 0.05em;
+  }
+  .detector-action {
+    min-height: 40px;
+    font-size: 9px;
+  }
+  .detector-legend > span {
+    display: none;
+  }
+  .stat-band {
+    margin-top: 0;
+  }
+  .stat-band article {
+    padding: 18px 16px;
+  }
+  .stat-band p {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+  }
+  .hero-bottom {
+    margin-top: 24px;
+  }
+  .project-description,
+  .experience-description {
+    font-size: 14px;
+  }
+  .project-visual {
+    padding: 18px 20px;
+  }
+  .project-visual-title {
+    font-size: 36px;
+    min-height: 82px;
+  }
+  .project-body {
+    padding: 22px 20px 0;
+  }
+  .project-details summary {
+    font-size: 12px;
+  }
+  .project-result {
+    font-size: 12px;
+  }
+  .project-filters button {
+    font-size: 11px;
+  }
+  .mobile-carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .mobile-carousel-count {
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .mobile-carousel-hint {
+    margin-right: auto;
+    font-size: 11px;
+    color: var(--muted-foreground);
+  }
+  .mobile-carousel-controls button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--background);
+  }
+  .mobile-carousel-controls button:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+  .mobile-carousel-track {
+    display: grid;
+    position: relative;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    align-items: start;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .mobile-carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+  .mobile-carousel-track > * {
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .mobile-carousel-track > .project-card:hover {
+    transform: none;
+  }
+  #experience .mobile-carousel-controls {
+    margin-top: 28px;
+  }
+  .experience-list.mobile-carousel-track {
+    margin-top: 0;
+  }
+  .experience-list .experience-row {
+    padding: 22px 20px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--background);
+  }
+  .experience-title {
+    align-items: flex-start;
+  }
+  .experience-title h3 {
+    font-size: 21px;
+  }
+  .experience-date {
+    flex-wrap: wrap;
+  }
+  .skills-grid {
+    gap: 12px;
+  }
+  .skill-group {
+    padding: 20px 16px;
+  }
+  .skill-group h3 {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .skill-group .skill-tags li {
+    font-size: 11px;
+  }
+}
+@media (max-width: 380px) {
+  .portfolio-container {
+    width: calc(100% - 32px);
+  }
+  .hero-copy h1 {
+    font-size: clamp(26px, 8.5vw, 32px);
+  }
+  .hero-copy .button-primary,
+  .hero-copy .button-secondary {
+    flex-basis: 100%;
+  }
+  .system-tabs button {
+    font-size: 10px;
+    gap: 5px;
+  }
+  .detector-hud-row > span:last-child {
+    display: none;
+  }
+  .mobile-carousel-controls {
+    gap: 6px;
+  }
+  .mobile-carousel-hint {
+    font-size: 10px;
+  }
+}
+@media print {
+  .mobile-carousel-track {
+    display: block;
+    height: auto !important;
+    overflow: visible;
+  }
+  .mobile-carousel-controls {
+    display: none;
+  }
 }

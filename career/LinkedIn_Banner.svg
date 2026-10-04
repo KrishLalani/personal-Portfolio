@@ -1,66 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396" role="img" aria-label="Krish Lalani, Software Developer. Backend systems, computer vision, practical software.">
-<defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-    <stop stop-color="#101a16"/><stop offset="1" stop-color="#16332a"/>
-  </linearGradient>
-  <radialGradient id="halo" cx=".5" cy=".5">
-    <stop stop-color="#a8dcb0" stop-opacity=".20"/>
-    <stop offset="1" stop-color="#a8dcb0" stop-opacity="0"/>
-  </radialGradient>
-  <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
-    <path d="M28 0H0V28" stroke="#a8dcb0" stroke-opacity=".07" fill="none"/>
-  </pattern>
-</defs>
-
-<rect width="1584" height="396" fill="url(#bg)"/>
-<rect width="1584" height="396" fill="url(#grid)" opacity=".42"/>
-<ellipse cx="1290" cy="198" rx="390" ry="370" fill="url(#halo)"/>
-
-<!-- Texture only: LinkedIn's profile photo overlaps this corner. -->
-<g fill="none" stroke="#a8dcb0" stroke-opacity=".16">
-  <circle cx="158" cy="182" r="110"/>
-  <circle cx="158" cy="182" r="164" stroke-dasharray="2 9"/>
-  <path d="M0 182H270M158 18V296"/>
-</g>
-<g fill="#a8dcb0" opacity=".55"><circle cx="236" cy="104" r="4"/><circle cx="74" cy="256" r="2.5"/></g>
-<path d="M318 48V348" stroke="#304034"/>
-
-<!-- Message block -->
-<text x="366" y="78" font-family="Inter, Arial, Helvetica, sans-serif" font-size="16" font-weight="600" letter-spacing="3.6" fill="#edf2e9">KRISH LALANI</text>
-<text x="366" y="104" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="10" letter-spacing="2.6" fill="#abb9ae">SOFTWARE DEVELOPER</text>
-<text x="363" y="178" font-family="Inter, Arial, Helvetica, sans-serif" font-size="52" font-weight="700" letter-spacing="-2" fill="#edf2e9">Backend systems.</text>
-<text x="364" y="246" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" font-size="64" font-style="italic" letter-spacing="-1.4" fill="#a8dcb0">Computer vision.</text>
-<text x="366" y="292" font-family="Inter, Arial, Helvetica, sans-serif" font-size="25" font-weight="400" letter-spacing="-.4" fill="#abb9ae">Practical software.</text>
-<path d="M366 316H986" stroke="#304034"/>
-<text x="366" y="345" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="12" letter-spacing="2" fill="#a8dcb0">PYTHON · NODE.JS · YOLO · OPENCV</text>
-
-<!-- Two disciplines converging on a shipped product -->
-<text x="1064" y="48" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="9" letter-spacing="2.4" fill="#abb9ae">FROM INPUT TO IMPACT</text>
-<g fill="#16271f" stroke="#304034">
-  <rect x="1056" y="66" width="300" height="104" rx="10"/>
-  <rect x="1056" y="216" width="300" height="108" rx="10"/>
-</g>
-<path d="M1056 102H1356M1056 252H1356" stroke="#304034"/>
-<text x="1074" y="92" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="10" letter-spacing="1.8" fill="#a8dcb0">{ } BACKEND</text>
-<text x="1074" y="242" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="10" letter-spacing="1.8" fill="#a8dcb0">[ ] COMPUTER VISION</text>
-<g font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="11" fill="#abb9ae">
-  <text x="1074" y="126">request → API → auth → data</text>
-  <text x="1074" y="148">schema / access control</text>
-  <text x="1120" y="284">frame → model → detection</text>
-  <text x="1120" y="306">train / evaluate / deploy</text>
-</g>
-<!-- Small detector glyph beside the vision panel -->
-<g stroke="#a8dcb0" fill="none" stroke-opacity=".8">
-  <rect x="1074" y="266" width="34" height="34" rx="3"/>
-  <path d="M1074 277h34M1074 289h34M1085 266v34M1097 266v34" stroke-opacity=".3"/>
-</g>
-<path d="M1356 118h44v94h16M1356 288h44v-76" fill="none" stroke="#a8dcb0" stroke-opacity=".45"/>
-<g fill="#a8dcb0"><circle cx="1360" cy="118" r="3.5"/><circle cx="1360" cy="288" r="3.5"/></g>
-<g fill="#16271f" stroke="#a8dcb0" stroke-opacity=".55">
-  <rect x="1416" y="176" width="72" height="72" rx="14"/>
-</g>
-<path d="M1440 212l10 11 18-21" fill="none" stroke="#a8dcb0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="1452" y="272" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="9" letter-spacing="1.8" fill="#abb9ae" text-anchor="middle">SHIPPED</text>
-
-<text x="1056" y="360" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace" font-size="11" letter-spacing=".6" fill="#abb9ae">portfolio.krishlalani.dev</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396" role="img" aria-label="Krish Lalani. Software Developer. Python, Backend, Computer Vision.">
+<rect width="1584" height="396" fill="#101a16"/>
+<path d="M440 102V286" stroke="#a8dcb0" stroke-width="3"/>
+<text x="480" y="157" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700" letter-spacing="-2" fill="#edf2e9">Krish Lalani</text>
+<text x="483" y="205" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#abb9ae">Software Developer</text>
+<text x="483" y="249" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#a8dcb0">Python · Backend · Computer Vision</text>
+<text x="483" y="296" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#abb9ae">portfolio.krishlalani.dev</text>
 </svg>

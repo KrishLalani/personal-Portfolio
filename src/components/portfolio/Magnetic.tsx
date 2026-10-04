@@ -1,10 +1,6 @@
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useRef, type ReactNode } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useReducedMotion,
-} from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 interface Props {
   children: ReactNode;

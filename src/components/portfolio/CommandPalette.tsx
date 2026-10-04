@@ -59,11 +59,12 @@ export function CommandPalette() {
     (hash: string) => {
       close();
       window.setTimeout(() => {
-        document.getElementById(hash.replace("#", ""))?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-        history.replaceState(null, "", hash);
+        // Notify the project filter so hidden targets are revealed as well.
+        if (window.location.hash === hash) {
+          window.dispatchEvent(new HashChangeEvent("hashchange"));
+        } else {
+          window.location.hash = hash;
+        }
       }, 90);
     },
     [close],
@@ -311,11 +312,24 @@ export function CommandPalette() {
                       onChange={(event) => setQuery(event.target.value)}
                       placeholder="Search sections, projects, actions…"
                       aria-label="Search sections, projects and actions"
+                      role="combobox"
+                      aria-expanded="true"
+                      aria-controls="command-results"
+                      aria-autocomplete="list"
+                      aria-activedescendant={
+                        filtered.length ? `command-result-${cursor}` : undefined
+                      }
                       autoComplete="off"
                       spellCheck={false}
                     />
                   </div>
-                  <div className="cmdk-list" ref={listRef}>
+                  <div
+                    className="cmdk-list"
+                    id="command-results"
+                    role="listbox"
+                    aria-label="Search results"
+                    ref={listRef}
+                  >
                     {grouped.length === 0 && (
                       <p className="cmdk-empty">No matches for “{query}”.</p>
                     )}
@@ -329,6 +343,10 @@ export function CommandPalette() {
                           return (
                             <button
                               key={action.id}
+                              id={`command-result-${index}`}
+                              role="option"
+                              aria-selected={index === cursor}
+                              tabIndex={-1}
                               type="button"
                               className="cmdk-item"
                               data-active={index === cursor}
